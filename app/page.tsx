@@ -4,7 +4,6 @@ import { cookies } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 import { OrderForm } from "@/components/order-form";
 import { Logo, Washes } from "@/components/ui";
-import { Announcement } from "@/components/announcement";
 import { Hero3D } from "@/components/hero-3d";
 import { Reveal } from "@/components/motion";
 import { REF_COOKIE, cleanCode } from "@/lib/attribution";
@@ -71,7 +70,6 @@ const FAQ = [
 export default function Home() {
   return (
     <div className="relative isolate overflow-x-clip">
-      <Announcement />
 
       {/* HERO — navy stage with the 3D S-form */}
       <section data-hero="" className="relative isolate overflow-hidden bg-navy text-parchment">
