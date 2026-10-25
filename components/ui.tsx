@@ -57,7 +57,7 @@ export function NavLink({ href, children }: { href: string; children: React.Reac
 
 export function Washes({ className = "" }: { className?: string }) {
   return (
-    <div aria-hidden className={`pointer-events-none absolute inset-0 -z-10 overflow-hidden ${className}`}>
+    <div aria-hidden className={`pointer-events-none absolute -inset-x-40 -top-20 -bottom-40 -z-10 ${className}`}>
       <div className="wash -top-24 -left-24 h-80 w-96 bg-coral/60" />
       <div className="wash top-10 right-[-6rem] h-96 w-[28rem] bg-sky-blue/70" />
       <div className="wash bottom-[-8rem] left-1/3 h-80 w-96 bg-mint/60" />

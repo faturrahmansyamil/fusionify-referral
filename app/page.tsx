@@ -41,7 +41,7 @@ const FAQ = [
 
 export default function Home() {
   return (
-    <div className="relative isolate">
+    <div className="relative isolate overflow-x-clip">
       <Announcement />
       <header className="mx-auto flex h-20 w-full max-w-[1432px] items-center gap-6 px-4 sm:px-8">
         <Logo />
@@ -56,7 +56,7 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="relative mx-auto max-w-[1432px] overflow-hidden px-4 pt-16 pb-8 text-center sm:px-8 sm:pt-24">
+      <section className="relative mx-auto max-w-[1432px] px-4 pt-16 pb-8 text-center sm:px-8 sm:pt-24">
         <Washes />
         <p className="eyebrow animate-[fade-up_.6s_var(--ease-premium)_both]">PT Fusionify Digital Store</p>
         <h1 className="mx-auto mt-6 max-w-5xl text-[48px] text-off-black sm:text-[64px] lg:text-[80px] animate-[fade-up_.7s_var(--ease-premium)_.08s_both]">Produk digital, langsung order lewat WhatsApp.</h1>
