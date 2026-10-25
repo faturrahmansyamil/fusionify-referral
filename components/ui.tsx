@@ -4,7 +4,7 @@ import Image from "next/image";
 export function Logo({ href = "/", light = false }: { href?: string; light?: boolean }) {
   return (
     <Link href={href} className={`flex items-center gap-2.5 ${light ? "text-parchment" : "text-off-black"}`}>
-      <Image src="/logo-bulat.png" alt="" width={32} height={32} priority className="size-8 rounded-full" />
+      <Image src="/fusionify-seal.png" alt="" width={36} height={36} priority className="size-9" />
       <span className="font-serif text-[24px] leading-none tracking-[-0.02em]">fusionify<span className={light ? "text-ice" : "text-lake-blue"}> referral</span></span>
     </Link>
   );
@@ -46,8 +46,18 @@ export function PageTitle({ title, desc }: { title: string; desc?: string }) {
   );
 }
 
-export function Empty({ children }: { children: React.ReactNode }) {
-  return <p className="rounded-[24px] border border-dashed border-ash p-6 text-center text-[14px] text-smoke">{children}</p>;
+export function Mascot({ mood, size = 96, className = "" }: { mood: "empty" | "happy" | "confused"; size?: number; className?: string }) {
+  // small, lazy, webp — official Fusionify mascot
+  return <Image src={`/mascot/${mood}-420.webp`} alt="" width={size} height={size} loading="lazy" sizes={`${size}px`} className={`object-contain ${className}`} />;
+}
+
+export function Empty({ children, mascot = true }: { children: React.ReactNode; mascot?: boolean }) {
+  return (
+    <div className="flex flex-col items-center gap-2 rounded-[24px] border border-dashed border-ash p-6 text-center text-[14px] text-smoke">
+      {mascot && <Mascot mood="empty" size={72} />}
+      <p>{children}</p>
+    </div>
+  );
 }
 
 export function NavLink({ href, children }: { href: string; children: React.ReactNode }) {

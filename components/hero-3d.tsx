@@ -5,11 +5,12 @@ import { useEffect, useRef, useState } from "react";
 const HeroScene = dynamic(() => import("./hero-scene"), { ssr: false, loading: () => null });
 
 function StaticShapes() {
+  // no-WebGL / low-end / pre-hydration: the real logo mark, same footprint as the 3D (no layout shift)
   return (
-    <div aria-hidden className="absolute inset-0">
-      <div className="absolute top-1/2 left-1/2 size-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-lake-blue to-lake-deep opacity-80 blur-[2px] sm:size-80" />
-      <div className="absolute top-[18%] left-[18%] size-20 rounded-full bg-ice/80 sm:size-28" />
-      <div className="absolute right-[16%] bottom-[18%] size-16 rounded-full bg-mint/70 sm:size-24" />
+    <div aria-hidden className="absolute inset-0 grid place-items-center">
+      <div className="absolute size-72 rounded-full bg-lake-blue/40 blur-3xl sm:size-96" />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/fusionify-seal.png" alt="" width={256} height={256} className="relative size-56 drop-shadow-[0_30px_60px_rgba(13,108,215,.55)] sm:size-72" />
     </div>
   );
 }
@@ -22,7 +23,7 @@ function canUseWebGL() {
 }
 
 export function Hero3D() {
-  const [mode, setMode] = useState<"static" | "still" | "live">("static");
+  const [mode, setMode] = useState<"pending" | "static" | "still" | "live">("pending");
   const [visible, setVisible] = useState(true);
   const box = useRef<HTMLDivElement>(null);
   // Pause the render loop when the hero is off-screen or the tab is hidden.
@@ -40,13 +41,13 @@ export function Hero3D() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const nav = navigator as Navigator & { deviceMemory?: number; connection?: { saveData?: boolean } };
     const lowEnd = (nav.hardwareConcurrency ?? 8) <= 2 || (nav.deviceMemory ?? 8) <= 2 || nav.connection?.saveData;
-    if (!canUseWebGL() || lowEnd) return;
+    if (!canUseWebGL() || lowEnd) { const f = window.setTimeout(() => setMode("static"), 0); return () => clearTimeout(f); }
     const id = window.setTimeout(() => setMode(reduce ? "still" : "live"), 150);
     return () => clearTimeout(id);
   }, []);
   return (
     <div ref={box} className="absolute inset-0">
-      {mode === "static" ? <StaticShapes /> : <HeroScene animate={mode === "live"} visible={visible} />}
+      {mode === "static" ? <StaticShapes /> : mode === "pending" ? null : <HeroScene animate={mode === "live"} visible={visible} />}
     </div>
   );
 }

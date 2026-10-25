@@ -98,7 +98,7 @@ export default function Home() {
         <div className="relative mx-auto grid max-w-[1432px] items-center gap-4 px-4 pt-8 pb-16 sm:px-8 lg:min-h-[720px] lg:grid-cols-[1.05fr_1fr] lg:pt-0">
           <div data-hero-copy="" className="relative z-10 text-center lg:text-left">
             <p className="eyebrow text-ice animate-[fade-up_.6s_var(--ease-premium)_both]">PT Fusionify Digital Store · Program Reseller</p>
-            <h1 className="mt-6 text-[48px] sm:text-[68px] lg:text-[84px] animate-[fade-up_.7s_var(--ease-premium)_.08s_both]">Produk digital, langsung order lewat <span className="text-ice">WhatsApp.</span></h1>
+            <h1 className="mt-6 text-[48px] sm:text-[68px] lg:text-[84px] animate-[rise_.8s_var(--ease-premium)_both]">Produk digital, langsung order lewat <span className="text-ice">WhatsApp.</span></h1>
             <p className="mx-auto mt-6 max-w-xl text-[16px] text-frost/80 sm:text-[20px] lg:mx-0 animate-[fade-up_.7s_var(--ease-premium)_.16s_both]">Pilih produk, isi nama &amp; nomor WA, lalu lanjutkan pembayaran dengan admin. Kode pesananmu ikut terkirim otomatis.</p>
             <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row lg:justify-start sm:justify-center animate-[fade-up_.7s_var(--ease-premium)_.24s_both]">
               <a href="#katalog" data-magnetic="" className="btn-primary w-full sm:w-auto">Pesan sekarang ▸</a>

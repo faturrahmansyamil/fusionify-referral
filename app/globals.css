@@ -3,8 +3,9 @@
 /* Fusionify Referral — editorial parchment system (serif headings + mono UI) */
 @theme {
   --color-parchment: #f3f5f9; /* blue-tinted canvas */
-  --color-lake-blue: #1e78d2; /* Syamxuanify biru */
-  --color-lake-deep: #155ea8; /* Syamxuanify hover */
+  --color-lake-blue: #0d6cd7; /* Fusionify seal blue (sampled) */
+  --color-lake-deep: #0a56ab; /* derived hover (−20% L) */
+  --color-lake-light: #539de9; /* Fusionify 'i' dot (sampled) */
   --color-navy: #14213d; /* Syamxuanify dongker */
   --color-navy-2: #1b2c52;
   --color-ice: #a9cdf2;
@@ -25,9 +26,9 @@
   --color-white: #f3f5f9;
   --color-brand-50: #e6f0fb;
   --color-brand-100: #d6e6f8;
-  --color-brand-500: #1e78d2;
-  --color-brand-600: #1e78d2;
-  --color-brand-700: #155ea8;
+  --color-brand-500: #0d6cd7;
+  --color-brand-600: #0d6cd7;
+  --color-brand-700: #0a56ab;
   --color-brand-900: #14213d;
   --color-slate-50: #eaeef5;
   --color-slate-100: #e1e7f0;
@@ -112,3 +113,6 @@ html.js [data-reveal].is-in { animation: none; }
   html.js [data-reveal] { opacity: 1; transform: none; animation: none; }
   .marquee, .wash-anim { animation: none; }
 }
+
+/* LCP-safe entrance: transform only, the headline is painted (visible) from frame 1 */
+@keyframes rise { from { transform: translateY(18px); } to { transform: none; } }

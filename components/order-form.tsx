@@ -2,6 +2,7 @@
 import { useActionState, useEffect, useMemo, useState } from "react";
 import { createOrder, type OrderResult } from "@/app/actions";
 import { rupiah } from "@/lib/format";
+import { Empty } from "./ui";
 import { cleanName, isDemo, productMeta } from "@/lib/product-meta";
 
 type Product = { id: string; name: string; description: string; price: number };
@@ -16,7 +17,7 @@ export function OrderForm({ products, refCode }: { products: Product[]; refCode:
     if (state?.ok) window.location.href = state.waUrl;
   }, [state]);
 
-  if (!products.length) return <p className="text-sm text-slate-500">Belum ada produk aktif.</p>;
+  if (!products.length) return <Empty>Belum ada produk aktif.</Empty>;
 
   return (
     <form action={action} className="grid gap-5">

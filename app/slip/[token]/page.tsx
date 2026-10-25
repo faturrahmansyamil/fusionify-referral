@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { tokenSchema } from "@/lib/validation";
-import { Badge, Logo } from "@/components/ui";
+import { Badge, Logo, Mascot } from "@/components/ui";
 import { rupiah, tanggal } from "@/lib/format";
 
 export const metadata: Metadata = { title: "Slip komisi", robots: { index: false } };
@@ -20,7 +20,7 @@ async function SlipView({ params }: { params: Promise<{ token: string }> }) {
   if (!s) notFound();
   return (
     <article className="card overflow-hidden">
-      <div className="relative overflow-hidden bg-periwinkle-mist p-8 sm:p-10"><div aria-hidden className="wash -top-10 -right-10 size-48 bg-coral/60" /><div aria-hidden className="wash -bottom-16 right-24 size-40 bg-mint/70" /><div className="relative">
+      <div className="relative overflow-hidden bg-periwinkle-mist p-8 sm:p-10"><div aria-hidden className="wash -top-10 -right-10 size-48 bg-coral/60" /><div aria-hidden className="wash -bottom-16 right-24 size-40 bg-mint/70" /><div className="relative">{s.status === "paid" && <Mascot mood="happy" size={88} className="absolute -top-4 right-0 sm:-top-6" />}
         <p className="eyebrow text-graphite">Slip komisi reseller</p>
         <p className="mt-3 font-serif text-[48px] leading-none tabular-nums">{rupiah(s.total)}</p>
         <p className="mt-3 text-[14px] text-graphite">untuk {s.reseller} · dibuat {tanggal(s.created_at)}</p>

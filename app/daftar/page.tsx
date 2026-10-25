@@ -3,12 +3,14 @@ import Link from "next/link";
 import { useActionState } from "react";
 import { signup } from "../login/actions";
 import { AuthCard } from "@/components/auth-card";
+import { Mascot } from "@/components/ui";
 
 export default function DaftarPage() {
   const [msg, action, pending] = useActionState(signup, null);
   if (msg === "OK")
     return (
       <AuthCard title="Pendaftaran terkirim" desc="Cek email untuk konfirmasi (jika diaktifkan), lalu tunggu admin menyetujui akunmu dan membuatkan kode referral.">
+        <div className="mb-6 flex justify-center"><Mascot mood="happy" size={120} /></div>
         <Link href="/login" className="btn-primary w-full">Ke halaman masuk</Link>
       </AuthCard>
     );
