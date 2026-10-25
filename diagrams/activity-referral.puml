@@ -1,0 +1,83 @@
+@startuml activity-referral
+title Alur Order Referral → Komisi → Pencairan (sesuai kode MVP)
+skinparam ActivityBackgroundColor #EFF5FF
+skinparam ActivityBorderColor #2563EB
+skinparam SwimlaneTitleFontStyle bold
+
+|Pembeli|
+start
+if (Datang lewat link /r/KODE?) then (ya)
+  |Sistem|
+  if (Kode valid & reseller aktif?) then (ya)
+    :Catat klik (dedupe 30 menit);
+    :Set cookie fd_ref 30 hari\n(+ fd_cmp jika ?c=kampanye);
+  else (tidak)
+  endif
+  :Redirect ke katalog;
+else (tidak)
+endif
+|Pembeli|
+:Pilih produk, isi jumlah, nama, no. WA\n(opsional: ketik kode promo);
+:Klik "Pesan via WhatsApp";
+|Sistem|
+if (Input lolos validasi zod?) then (tidak)
+  :Tampilkan pesan galat;
+  stop
+else (ya)
+endif
+if (Kode promo diketik?) then (ya)
+  if (Kode valid & aktif?) then (ya)
+    :Atribusi = code\nhitung diskon %;
+  else (tidak)
+    :Tolak: "Kode promo tidak valid";
+    stop
+  endif
+elseif (Cookie fd_ref valid?) then (ya)
+  :Atribusi = link (tanpa diskon);
+else (tidak)
+  :Atribusi = none;
+endif
+:Cek risiko: self_referral, velocity,\nbuyer_multi_code → risk_flags;
+:Simpan order pending + kode #FD-XXXXXX;
+:Buat link wa.me berisi pesan order;
+|Pembeli|
+:WhatsApp terbuka, kirim pesan ke admin;
+|Admin|
+:Cocokkan kode #FD di chat dengan daftar pesanan;
+if (Pembayaran diterima?) then (ya)
+  :Klik "Lunas";
+  |Sistem|
+  :mark_order_paid (row lock, status → paid);
+  if (Order punya reseller?) then (ya)
+    :Buat komisi pending\nhold_until = +7 hari\n(risk_flags ikut disalin);
+  else (tidak)
+    stop
+  endif
+else (tidak)
+  |Admin|
+  :Klik "Batal" (status → cancelled);
+  stop
+endif
+|Sistem|
+if (Komisi punya risk_flags?) then (ya)
+  |Admin|
+  if (Setujui setelah review & lewat hold?) then (ya)
+    :review_commission → approved;
+  else (tidak)
+    :review_commission → void;
+    stop
+  endif
+else (tidak)
+  |Sistem|
+  :approve_matured_commissions\n(admin klik / pg_cron opsional)\nsetelah 7 hari → approved;
+endif
+|Admin|
+:Buat payout (kumpulkan komisi approved);
+:Transfer manual ke rekening/e-wallet reseller;
+:Tandai dibayar + link bukti https;
+|Sistem|
+:Komisi → paid, slip publik /slip/token siap;
+|Reseller|
+:Buka slip komisi transparan;
+stop
+@enduml

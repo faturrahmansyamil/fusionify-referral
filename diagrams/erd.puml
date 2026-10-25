@@ -1,0 +1,114 @@
+@startuml erd
+title ERD Fusionify Referral — schema referral (supabase/migrations/0001_referral_init.sql)
+hide circle
+skinparam linetype ortho
+skinparam ClassBackgroundColor #EFF5FF
+skinparam ClassBorderColor #2563EB
+
+entity "auth.users" as users {
+  * id : uuid <<PK>>
+  --
+  email : text
+}
+entity "referral.profiles" as profiles {
+  * id : uuid <<PK, FK auth.users>>
+  --
+  email : text
+  role : app_role (admin|reseller)
+  status : reseller_status (pending|active|banned)
+  full_name : text
+  whatsapp : text
+  payout_method : text
+  payout_account : text
+}
+entity referral_codes {
+  * id : uuid <<PK>>
+  --
+  * reseller_id : uuid <<FK>>
+  code : text UPPERCASE <<unique>>
+  discount_percent : int (0-50)
+  active : boolean
+  expires_at : timestamptz
+}
+entity products {
+  * id : uuid <<PK>>
+  --
+  name : text
+  price : int
+  commission_type : percent|flat
+  commission_value : int
+  active : boolean
+}
+entity campaigns {
+  * id : uuid <<PK>>
+  --
+  name : text
+  slug : text <<unique>>
+  utm_source / utm_medium / utm_campaign : text
+  starts_at / ends_at : timestamptz
+}
+entity clicks {
+  * id : bigint <<PK>>
+  --
+  * code_id : uuid <<FK>>
+  campaign_id : uuid <<FK>>
+  visitor_hash : text
+  ip_hash : text
+}
+entity orders {
+  * id : uuid <<PK>>
+  --
+  order_ref : text <<unique>>
+  * product_id : uuid <<FK>>
+  qty, unit_price, discount, total : int
+  buyer_name, buyer_wa : text
+  code_id : uuid <<FK>>
+  reseller_id : uuid <<FK>>
+  campaign_id : uuid <<FK>>
+  attribution : none|link|code
+  risk_flags : text[]
+  status : order_status
+  paid_by : uuid <<FK>>
+}
+entity commissions {
+  * id : uuid <<PK>>
+  --
+  * order_id : uuid <<FK, unique>>
+  * reseller_id : uuid <<FK>>
+  order_ref, product_name : text
+  order_total, amount : int
+  status : commission_status
+  hold_until : timestamptz
+  risk_flags : text[]
+  payout_id : uuid <<FK>>
+}
+entity payouts {
+  * id : uuid <<PK>>
+  --
+  * reseller_id : uuid <<FK>>
+  total : int
+  status : draft|paid
+  proof_url : text
+  slip_token : text <<unique>>
+}
+entity audit_log {
+  * id : bigint <<PK>>
+  --
+  actor : uuid
+  action, entity, entity_id : text
+  detail : jsonb
+}
+
+users ||--|| profiles
+profiles ||--o{ referral_codes
+referral_codes ||--o{ clicks
+campaigns |o--o{ clicks
+products ||--o{ orders
+referral_codes |o--o{ orders
+profiles |o--o{ orders
+campaigns |o--o{ orders
+orders ||--o| commissions
+profiles ||--o{ commissions
+payouts |o--o{ commissions
+profiles ||--o{ payouts
+@enduml
