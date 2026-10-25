@@ -7,10 +7,9 @@ const HeroScene = dynamic(() => import("./hero-scene"), { ssr: false, loading: (
 function StaticShapes() {
   return (
     <div aria-hidden className="absolute inset-0">
-      <div className="absolute top-[18%] left-[14%] size-40 rounded-full border-[28px] border-coral/70 sm:size-56" />
-      <div className="absolute top-[10%] right-[12%] size-36 rotate-12 rounded-[40px] bg-sky-blue/70 sm:size-48" />
-      <div className="absolute bottom-[12%] left-[40%] size-32 rounded-full bg-mint/70 sm:size-44" />
-      <div className="absolute bottom-[24%] left-[24%] size-24 -rotate-12 rounded-[24px] bg-gold/70 sm:size-32" />
+      <div className="absolute top-1/2 left-1/2 size-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-lake-blue to-lake-deep opacity-80 blur-[2px] sm:size-80" />
+      <div className="absolute top-[18%] left-[18%] size-20 rounded-full bg-ice/80 sm:size-28" />
+      <div className="absolute right-[16%] bottom-[18%] size-16 rounded-full bg-mint/70 sm:size-24" />
     </div>
   );
 }

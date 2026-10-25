@@ -2,6 +2,7 @@
 import { useActionState, useEffect, useMemo, useState } from "react";
 import { createOrder, type OrderResult } from "@/app/actions";
 import { rupiah } from "@/lib/format";
+import { cleanName, isDemo, productMeta } from "@/lib/product-meta";
 
 type Product = { id: string; name: string; description: string; price: number };
 
@@ -21,16 +22,30 @@ export function OrderForm({ products, refCode }: { products: Product[]; refCode:
     <form action={action} className="grid gap-5">
       <fieldset className="grid gap-2.5">
         <legend className="label">Pilih produk</legend>
-        {products.map((p) => (
-          <label key={p.id} className={`flex cursor-pointer items-start gap-4 rounded-[24px] border p-5 transition duration-200 sm:p-6 ${productId === p.id ? "border-off-black bg-periwinkle-mist" : "border-ash hover:border-off-black"}`}>
-            <input type="radio" name="productId" value={p.id} checked={productId === p.id} onChange={() => setProductId(p.id)} className="mt-1 accent-off-black" />
-            <span className="flex-1">
-              <span className="block font-serif text-[24px] leading-tight">{p.name}</span>
-              <span className="block text-sm text-slate-500">{p.description}</span>
-            </span>
-            <span className="font-medium tabular-nums">{rupiah(p.price)}</span>
-          </label>
-        ))}
+        <div className="grid gap-3 sm:grid-cols-2">
+        {products.map((p) => {
+          const m = productMeta(p.name);
+          const on = productId === p.id;
+          return (
+            <label key={p.id} data-tilt="" className={`group relative flex cursor-pointer has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-lake-blue flex-col gap-4 overflow-hidden rounded-[28px] border p-6 transition-colors duration-200 ${on ? "border-lake-blue bg-periwinkle-mist" : "border-ash bg-parchment hover:border-navy"}`}>
+              <input type="radio" name="productId" value={p.id} checked={on} onChange={() => setProductId(p.id)} className="sr-only" />
+              <span className="flex items-start justify-between gap-3">
+                <span aria-hidden className={`grid size-12 place-items-center rounded-full text-[20px] ${m.tone}`}>{m.icon}</span>
+                <span className="flex flex-wrap justify-end gap-1.5">
+                  <span className="rounded-full border border-ash px-2.5 py-0.5 text-[11px] uppercase">{m.tag}</span>
+                  {isDemo(p.name) && <span className="rounded-full bg-navy px-2.5 py-0.5 text-[11px] text-parchment uppercase">Demo</span>}
+                </span>
+              </span>
+              <span className="block font-serif text-[24px] leading-tight">{cleanName(p.name)}</span>
+              <span className="block flex-1 text-[14px] text-graphite">{p.description}</span>
+              <span className="flex items-center justify-between border-t border-ash pt-4">
+                <span className="font-serif text-[28px] leading-none tabular-nums">{rupiah(p.price)}</span>
+                <span aria-hidden className={`grid size-7 place-items-center rounded-full border text-[12px] transition ${on ? "border-lake-blue bg-lake-blue text-parchment" : "border-ash text-transparent group-hover:border-navy"}`}>✓</span>
+              </span>
+            </label>
+          );
+        })}
+        </div>
       </fieldset>
 
       <div className="grid gap-4 sm:grid-cols-2">

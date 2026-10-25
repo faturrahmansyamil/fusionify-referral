@@ -1,12 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 
-export function Logo({ href = "/" }: { href?: string }) {
+export function Logo({ href = "/", light = false }: { href?: string; light?: boolean }) {
   return (
-    <Link href={href} className="flex items-center gap-2.5 text-off-black">
-      <span aria-hidden className="relative grid size-7 place-items-center rounded-full bg-off-black">
-        <span className="size-2.5 rounded-full bg-parchment" />
-      </span>
-      <span className="font-serif text-[24px] leading-none tracking-[-0.02em]">fusionify<span className="text-smoke"> referral</span></span>
+    <Link href={href} className={`flex items-center gap-2.5 ${light ? "text-parchment" : "text-off-black"}`}>
+      <Image src="/logo-bulat.png" alt="" width={32} height={32} priority className="size-8 rounded-full" />
+      <span className="font-serif text-[24px] leading-none tracking-[-0.02em]">fusionify<span className={light ? "text-ice" : "text-lake-blue"}> referral</span></span>
     </Link>
   );
 }
@@ -58,10 +57,9 @@ export function NavLink({ href, children }: { href: string; children: React.Reac
 export function Washes({ className = "" }: { className?: string }) {
   return (
     <div aria-hidden className={`pointer-events-none absolute -inset-x-40 -top-20 -bottom-40 -z-10 ${className}`}>
-      <div className="wash -top-24 -left-24 h-80 w-96 bg-coral/60" />
-      <div className="wash top-10 right-[-6rem] h-96 w-[28rem] bg-sky-blue/70" />
-      <div className="wash bottom-[-8rem] left-1/3 h-80 w-96 bg-mint/60" />
-      <div className="wash top-1/2 left-[-4rem] h-56 w-64 bg-gold/60" />
+      <div className="wash wash-anim -top-24 -left-24 h-80 w-96 bg-sky-blue/70" />
+      <div className="wash wash-anim top-10 right-[-6rem] h-96 w-[28rem] bg-ice/80" />
+      <div className="wash wash-anim bottom-[-8rem] left-1/3 h-80 w-96 bg-mint/50" />
     </div>
   );
 }

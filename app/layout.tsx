@@ -8,12 +8,17 @@ const mono = JetBrains_Mono({ variable: "--font-mono-ui", subsets: ["latin"], we
 export const metadata: Metadata = {
   title: { default: "Fusionify Referral", template: "%s · Fusionify Referral" },
   description: "Katalog produk Fusionify + program reseller: link & kode promo, komisi otomatis, slip transparan.",
+  icons: { icon: "/logo-bulat.png" },
 };
-export const viewport: Viewport = { themeColor: "#f6f3f1" };
+export const viewport: Viewport = { themeColor: "#14213d" };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="id" className={`${serif.variable} ${mono.variable} h-full antialiased`}>
+    <html lang="id" className={`${serif.variable} ${mono.variable} h-full antialiased`} suppressHydrationWarning>
+      <head>
+        {/* marks JS-on before paint so reveal targets start hidden (no flash, no layout shift) */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body className="flex min-h-full flex-col font-mono">{children}</body>
     </html>
   );

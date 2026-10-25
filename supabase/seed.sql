@@ -2,11 +2,11 @@ set search_path = referral, extensions, public;
 -- Data [DEMO]. UUID valid RFC 9562 (versi 4, varian 8/9/a/b) supaya lolos z.uuid().
 -- Bagian 1 (produk & kampanye) selalu jalan. Bagian 2 jalan hanya jika user demo.* sudah ada di auth.users.
 insert into referral.products (id, name, description, price, commission_type, commission_value, sort) values
- ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e01', '[DEMO] Premium Streaming 1 Bulan', 'Akun sharing, garansi 30 hari.', 25000, 'percent', 10, 1),
- ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e02', '[DEMO] Fusionify Bot — Paket Starter', 'Bot auto-reply WA/Telegram, 1 bulan.', 150000, 'percent', 15, 2),
- ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e03', '[DEMO] Top Up Saldo FTV Pay 100rb', 'Komisi flat per transaksi.', 101500, 'flat', 1000, 3),
- ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e04', '[DEMO] Jasa Landing Page UMKM', 'Desain + deploy 1 halaman.', 750000, 'percent', 8, 4),
- ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e05', '[DEMO] Canva Pro 1 Tahun', 'Undangan tim edukasi, garansi penuh.', 45000, 'percent', 12, 5),
+ ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e01', '[DEMO] Sewa Bot Auto Order Telegram — 1 Bulan', 'Bot jualan otomatis 24/7 di Telegram, katalog + pembayaran QRIS, setup dibantu.', 100000, 'percent', 15, 1),
+ ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e05', '[DEMO] Sewa Bot Auto Order WhatsApp — 1 Bulan', 'Auto order lewat WhatsApp: katalog, format pesanan, rekap order, setup dibantu.', 125000, 'percent', 15, 2),
+ ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e02', '[DEMO] Fusionify Bot — Paket Starter', 'Bot auto-reply WA/Telegram, 1 bulan.', 150000, 'percent', 15, 3),
+ ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e03', '[DEMO] Top Up Saldo FTV Pay 100rb', 'Komisi flat per transaksi.', 101500, 'flat', 1000, 4),
+ ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e04', '[DEMO] Jasa Landing Page UMKM', 'Desain + deploy 1 halaman.', 750000, 'percent', 8, 5),
  ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e06', '[DEMO] Desain Feed Instagram 9 Post', 'Template feed + caption, revisi 2x.', 200000, 'percent', 10, 6)
 on conflict (id) do nothing;
 
