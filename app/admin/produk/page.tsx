@@ -14,7 +14,7 @@ async function Inner() {
         <li key={p.id} className="card flex flex-wrap items-center gap-3 p-4 text-sm">
           <div className="flex-1"><b>{p.name}</b><div className="text-xs text-slate-500">{rupiah(p.price)} · komisi {p.commission_type === "percent" ? `${p.commission_value}%` : `${rupiah(p.commission_value)}/item`}</div></div>
           <Badge tone={p.active ? "active" : "void"}>{p.active ? "aktif" : "nonaktif"}</Badge>
-          <ActionForm action={toggleProduct} className="flex items-center gap-2"><input type="hidden" name="id" value={p.id} /><input type="hidden" name="active" value={String(!p.active)} /><button className="btn-ghost px-3 py-1.5 text-xs">{p.active ? "Nonaktifkan" : "Aktifkan"}</button></ActionForm>
+          <ActionForm action={toggleProduct} className="flex items-center gap-2"><input type="hidden" name="id" value={p.id} /><input type="hidden" name="active" value={String(!p.active)} /><button className="btn-ghost min-h-8 px-3 py-1.5 text-xs">{p.active ? "Nonaktifkan" : "Aktifkan"}</button></ActionForm>
         </li>
       ))}
     </ul>

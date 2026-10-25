@@ -27,7 +27,7 @@ async function Overview() {
   const orders = (commissions ?? []).filter((c) => c.status !== "void").length;
   const main = codes?.find((c) => c.active);
   const link = main ? `${site}/r/${main.code}` : null;
-  const qr = link ? await QRCode.toDataURL(link, { margin: 1, width: 360, color: { dark: "#172a5c" } }) : null;
+  const qr = link ? await QRCode.toDataURL(link, { margin: 1, width: 360, color: { dark: "#242424", light: "#f6f3f1" } }) : null;
 
   return (
     <>
@@ -42,19 +42,19 @@ async function Overview() {
 
       <div className="mt-6 grid gap-4 lg:grid-cols-3">
         <section className="card p-5 lg:col-span-2">
-          <h2 className="font-semibold">Link & kode promo</h2>
+          <h2 className="text-[24px]">Link & kode promo</h2>
           {main && link ? (
             <div className="mt-4 flex flex-col gap-5 sm:flex-row">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={qr!} alt={`QR ${main.code}`} className="size-36 rounded-xl border border-slate-200" />
+              <img src={qr!} alt={`QR ${main.code}`} className="size-36 rounded-[20px] border border-slate-200" />
               <div className="grid flex-1 content-start gap-3 text-sm">
                 <div>
                   <p className="label">Link kamu</p>
-                  <div className="flex items-center gap-2"><code className="truncate rounded-lg bg-slate-100 px-2 py-1">{link}</code><CopyButton text={link} /></div>
+                  <div className="flex items-center gap-2"><code className="truncate rounded-full border border-ash px-3 py-1">{link}</code><CopyButton text={link} /></div>
                 </div>
                 <div>
                   <p className="label">Kode promo</p>
-                  <div className="flex items-center gap-2"><code className="rounded-lg bg-brand-50 px-2 py-1 font-bold text-brand-700">{main.code}</code>
+                  <div className="flex items-center gap-2"><code className="rounded-full bg-periwinkle-mist px-3 py-1 font-medium">{main.code}</code>
                     <span className="text-slate-500">diskon {main.discount_percent}% untuk pembeli</span></div>
                 </div>
                 <p className="text-xs text-slate-400">Tambah <code>?c=nama-kampanye</code> di link untuk melacak kampanye (misal story IG vs grup WA).</p>
@@ -63,11 +63,11 @@ async function Overview() {
           ) : <Empty>Kode belum dibuat admin.</Empty>}
         </section>
         <section className="card p-5">
-          <h2 className="font-semibold">Peringkat bulan ini</h2>
+          <h2 className="text-[24px]">Peringkat bulan ini</h2>
           <ol className="mt-3 grid gap-2 text-sm">
             {(board ?? []).map((r: { name: string; orders: number; commission: number }, i: number) => (
               <li key={i} className="flex items-center gap-3">
-                <span className={`grid size-6 place-items-center rounded-full text-xs font-bold ${i < 3 ? "bg-brand-600 text-white" : "bg-slate-100 text-slate-500"}`}>{i + 1}</span>
+                <span className={`grid size-6 place-items-center rounded-full text-xs font-medium ${i < 3 ? "bg-brand-600 text-white" : "bg-slate-100 text-slate-500"}`}>{i + 1}</span>
                 <span className="flex-1">{r.name}</span><span className="text-slate-500">{r.orders} order</span>
               </li>
             ))}
@@ -77,7 +77,7 @@ async function Overview() {
       </div>
 
       <section className="card mt-6 overflow-hidden">
-        <h2 className="px-5 pt-5 font-semibold">Riwayat komisi</h2>
+        <h2 className="px-5 pt-5 text-[24px]">Riwayat komisi</h2>
         <div className="overflow-x-auto">
           <table className="mt-3 w-full text-sm">
             <thead className="bg-slate-50 text-left text-xs text-slate-500"><tr><th className="px-5 py-2">Order</th><th>Produk</th><th>Total</th><th>Komisi</th><th className="pr-5">Status</th></tr></thead>
@@ -86,7 +86,7 @@ async function Overview() {
                 <tr key={c.id} className="border-t border-slate-100">
                   <td className="px-5 py-2.5 font-mono text-xs">{c.order_ref}<div className="font-sans text-slate-400">{tanggal(c.created_at)}</div></td>
                   <td>{c.product_name}</td><td className="tabular-nums">{rupiah(c.order_total)}</td>
-                  <td className="font-semibold tabular-nums">{rupiah(c.amount)}</td>
+                  <td className="font-medium tabular-nums">{rupiah(c.amount)}</td>
                   <td className="pr-5">
                     <Badge tone={c.status}>{c.status}</Badge>
                     {c.status === "pending" && <div className="text-xs text-slate-400">s/d {tanggal(c.hold_until)}</div>}
@@ -101,13 +101,13 @@ async function Overview() {
       </section>
 
       <section className="card mt-6 p-5">
-        <h2 className="font-semibold">Pencairan</h2>
+        <h2 className="text-[24px]">Pencairan</h2>
         <ul className="mt-3 grid gap-2 text-sm">
           {(payouts ?? []).map((p) => (
-            <li key={p.id} className="flex items-center gap-3 rounded-xl border border-slate-100 px-3 py-2">
+            <li key={p.id} className="flex items-center gap-3 rounded-[20px] border border-slate-100 px-3 py-2">
               <span className="flex-1">{tanggal(p.created_at)} · <b className="tabular-nums">{rupiah(p.total)}</b></span>
               <Badge tone={p.status}>{p.status}</Badge>
-              <Link href={`/slip/${p.slip_token}`} className="text-xs font-semibold text-brand-700">Lihat slip →</Link>
+              <Link href={`/slip/${p.slip_token}`} className="text-xs font-medium text-brand-700">Lihat slip →</Link>
             </li>
           ))}
           {!payouts?.length && <Empty>Belum ada pencairan.</Empty>}

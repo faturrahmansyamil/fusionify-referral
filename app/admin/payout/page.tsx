@@ -19,33 +19,33 @@ async function Inner() {
   return (
     <>
       <section className="card p-5">
-        <h2 className="font-semibold">Siap dicairkan</h2>
+        <h2 className="text-[24px]">Siap dicairkan</h2>
         <ul className="mt-3 grid gap-2 text-sm">
           {[...totals].map(([rid, total]) => (
-            <li key={rid} className="flex flex-wrap items-center gap-3 rounded-xl border border-slate-100 px-3 py-2">
+            <li key={rid} className="flex flex-wrap items-center gap-3 rounded-[20px] border border-slate-100 px-3 py-2">
               <span className="flex-1"><b>{who.get(rid)?.full_name}</b> <span className="text-xs text-slate-500">{who.get(rid)?.payout_method} {who.get(rid)?.payout_account}</span></span>
               <b className="tabular-nums">{rupiah(total)}</b>
-              <ActionForm action={createPayout} className="flex items-center gap-2"><input type="hidden" name="resellerId" value={rid} /><button className="btn-primary px-3 py-1.5 text-xs">Buat payout</button></ActionForm>
+              <ActionForm action={createPayout} className="flex items-center gap-2"><input type="hidden" name="resellerId" value={rid} /><button className="btn-primary min-h-8 px-3 py-1.5 text-xs">Buat payout</button></ActionForm>
             </li>
           ))}
           {!totals.size && <Empty>Tidak ada komisi approved yang belum dicairkan.</Empty>}
         </ul>
       </section>
       <section className="card mt-6 p-5">
-        <h2 className="font-semibold">Riwayat payout</h2>
+        <h2 className="text-[24px]">Riwayat payout</h2>
         <ul className="mt-3 grid gap-2 text-sm">
           {(payouts ?? []).map((p) => (
-            <li key={p.id} className="grid gap-2 rounded-xl border border-slate-100 px-3 py-2">
+            <li key={p.id} className="grid gap-2 rounded-[20px] border border-slate-100 px-3 py-2">
               <div className="flex flex-wrap items-center gap-3">
                 <span className="flex-1">{who.get(p.reseller_id)?.full_name} · {tanggal(p.created_at)}</span>
                 <b className="tabular-nums">{rupiah(p.total)}</b><Badge tone={p.status}>{p.status}</Badge>
-                <Link href={`/slip/${p.slip_token}`} className="text-xs font-semibold text-brand-700">Slip →</Link>
+                <Link href={`/slip/${p.slip_token}`} className="text-xs font-medium text-brand-700">Slip →</Link>
               </div>
               {p.status === "draft" && (
                 <ActionForm action={markPayoutPaid} confirm="Sudah transfer manual?" className="flex flex-wrap items-center gap-2">
                   <input type="hidden" name="id" value={p.id} />
                   <input name="proofUrl" type="url" required placeholder="https://… link bukti transfer" className="input flex-1 py-1.5" />
-                  <button className="btn-ghost px-3 py-1.5 text-xs">Tandai dibayar</button>
+                  <button className="btn-ghost min-h-8 px-3 py-1.5 text-xs">Tandai dibayar</button>
                 </ActionForm>
               )}
             </li>

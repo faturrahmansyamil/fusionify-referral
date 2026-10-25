@@ -1,25 +1,80 @@
 @import "tailwindcss";
 
+/* Fusionify Referral — editorial parchment system (serif headings + mono UI) */
+@theme {
+  --color-parchment: #f6f3f1;
+  --color-lake-blue: #2b59d1;
+  --color-periwinkle-mist: #cfdaf5;
+  --color-sky-blue: #a0b5eb;
+  --color-mint: #a7fccd;
+  --color-coral: #ff9473;
+  --color-gold: #ecda98;
+  --color-crimson: #f37a0a;
+  --color-off-black: #242424;
+  --color-ink: #000000;
+  --color-graphite: #4e4d4d;
+  --color-smoke: #797776;
+  --color-ash: #cecac8;
+
+  /* remap legacy tokens so every page inherits the new palette */
+  --color-white: #f6f3f1;
+  --color-brand-50: #e6ecfa;
+  --color-brand-100: #cfdaf5;
+  --color-brand-500: #242424;
+  --color-brand-600: #242424;
+  --color-brand-700: #242424;
+  --color-brand-900: #242424;
+  --color-slate-50: #efebe8;
+  --color-slate-100: #e6e2df;
+  --color-slate-200: #cecac8;
+  --color-slate-300: #b5b1ae;
+  --color-slate-400: #797776;
+  --color-slate-500: #6a6867;
+  --color-slate-600: #4e4d4d;
+  --color-slate-700: #3a3939;
+
+  --radius-card: 40px;
+  --ease-premium: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 @theme inline {
-  --font-sans: var(--font-jakarta);
-  --color-brand-50: #eff5ff;
-  --color-brand-100: #dbe8fe;
-  --color-brand-500: #3b7bf6;
-  --color-brand-600: #2563eb;
-  --color-brand-700: #1d4fd7;
-  --color-brand-900: #172a5c;
-  --color-ink: #0f172a;
+  --font-sans: var(--font-mono-ui);
+  --font-mono: var(--font-mono-ui);
+  --font-serif: var(--font-serif-display);
 }
 
+html { background: var(--color-parchment); }
 body {
-  background: #f6f8fc;
-  color: var(--color-ink);
+  background: var(--color-parchment);
+  color: var(--color-off-black);
+  font-size: 16px;
+  letter-spacing: -0.025em;
+  line-height: 1.35;
+}
+h1, h2, h3, .serif {
+  font-family: var(--font-serif);
+  font-weight: 400 !important;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+::selection { background: var(--color-periwinkle-mist); }
+
+@utility card { @apply rounded-[24px] border border-ash bg-parchment sm:rounded-[40px]; }
+@utility card-elevated { @apply rounded-[24px] bg-periwinkle-mist sm:rounded-[40px]; }
+@utility btn { @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-[100px] px-8 py-4 font-mono text-[14px] font-normal tracking-[-0.02em] uppercase transition duration-200 ease-(--ease-premium) active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50; }
+@utility btn-primary { @apply btn bg-lake-blue text-parchment hover:bg-[#2450bd]; }
+@utility btn-dark { @apply btn bg-off-black text-parchment hover:bg-ink; }
+@utility btn-ghost { @apply btn border border-off-black bg-transparent text-off-black hover:bg-off-black/5; }
+@utility btn-wa { @apply btn bg-off-black text-parchment hover:bg-ink; }
+@utility input { @apply w-full rounded-[100px] border border-ash bg-parchment px-5 py-3 font-mono text-[14px] outline-none placeholder:text-smoke focus:border-off-black; }
+@utility label { @apply mb-2 block font-mono text-[12px] font-medium tracking-[-0.033em] text-smoke uppercase; }
+@utility eyebrow { @apply font-mono text-[12px] tracking-[-0.033em] text-smoke uppercase; }
+@utility link-arrow { @apply inline-flex items-center gap-1 font-mono text-[14px] tracking-[-0.02em] text-off-black uppercase hover:underline; }
+
+.wash { position: absolute; border-radius: 9999px; filter: blur(64px); pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 
-@utility card { @apply rounded-2xl border border-slate-200/80 bg-white shadow-[0_1px_2px_rgba(15,23,42,.04)]; }
-@utility btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50; }
-@utility btn-primary { @apply btn bg-brand-600 text-white hover:bg-brand-700; }
-@utility btn-ghost { @apply btn border border-slate-200 bg-white text-slate-700 hover:bg-slate-50; }
-@utility btn-wa { @apply btn bg-[#1fa855] text-white hover:bg-[#178a45]; }
-@utility input { @apply w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm outline-none placeholder:text-slate-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-100; }
-@utility label { @apply mb-1.5 block text-xs font-semibold tracking-wide text-slate-500 uppercase; }
+@keyframes fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }

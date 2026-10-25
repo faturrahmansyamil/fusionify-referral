@@ -21,7 +21,7 @@ export default function DaftarPage() {
         {msg && <p className="text-sm text-rose-600">{msg}</p>}
         <button disabled={pending} className="btn-primary">Daftar</button>
       </form>
-      <p className="mt-4 text-center text-sm text-slate-500">Sudah punya akun? <Link href="/login" className="font-semibold text-brand-700">Masuk</Link></p>
+      <p className="mt-4 text-center text-sm text-slate-500">Sudah punya akun? <Link href="/login" className="font-medium text-brand-700">Masuk</Link></p>
     </AuthCard>
   );
 }

@@ -21,18 +21,18 @@ async function Inner() {
             <Badge tone={p.status}>{p.status}</Badge>
           </div>
           <div className="flex flex-wrap gap-1.5">
-            {(codes ?? []).filter((c) => c.reseller_id === p.id).map((c) => <code key={c.code} className="rounded-lg bg-brand-50 px-2 py-0.5 text-xs font-bold text-brand-700">{c.code} · {c.discount_percent}%</code>)}
+            {(codes ?? []).filter((c) => c.reseller_id === p.id).map((c) => <code key={c.code} className="rounded-full bg-brand-50 px-2 py-0.5 text-xs font-medium text-brand-700">{c.code} · {c.discount_percent}%</code>)}
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            {p.status !== "active" && <ActionForm action={setResellerStatus} className="flex items-center gap-2"><input type="hidden" name="id" value={p.id} /><input type="hidden" name="status" value="active" /><button className="btn-primary px-3 py-1.5 text-xs">Setujui</button></ActionForm>}
-            {p.status !== "banned" && <ActionForm action={setResellerStatus} confirm="Nonaktifkan reseller ini?" className="flex items-center gap-2"><input type="hidden" name="id" value={p.id} /><input type="hidden" name="status" value="banned" /><button className="btn-ghost px-3 py-1.5 text-xs text-rose-600">Nonaktifkan</button></ActionForm>}
+            {p.status !== "active" && <ActionForm action={setResellerStatus} className="flex items-center gap-2"><input type="hidden" name="id" value={p.id} /><input type="hidden" name="status" value="active" /><button className="btn-primary min-h-8 px-3 py-1.5 text-xs">Setujui</button></ActionForm>}
+            {p.status !== "banned" && <ActionForm action={setResellerStatus} confirm="Nonaktifkan reseller ini?" className="flex items-center gap-2"><input type="hidden" name="id" value={p.id} /><input type="hidden" name="status" value="banned" /><button className="btn-ghost min-h-8 px-3 py-1.5 text-xs text-rose-600">Nonaktifkan</button></ActionForm>}
           </div>
           <ActionForm action={createCode} className="flex flex-wrap items-center gap-2">
             <input type="hidden" name="resellerId" value={p.id} />
             <input name="code" required placeholder="KODE" maxLength={20} className="input w-28 py-1.5 uppercase" />
             <input name="discount" type="number" min={0} max={50} defaultValue={5} className="input w-20 py-1.5" aria-label="Diskon %" />
             <span className="text-xs text-slate-400">% diskon</span>
-            <button className="btn-ghost px-3 py-1.5 text-xs">Buat kode</button>
+            <button className="btn-ghost min-h-8 px-3 py-1.5 text-xs">Buat kode</button>
           </ActionForm>
         </div>
       ))}

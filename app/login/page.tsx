@@ -14,7 +14,7 @@ export default function LoginPage() {
         {error && <p className="text-sm text-rose-600">{error}</p>}
         <button disabled={pending} className="btn-primary">Masuk</button>
       </form>
-      <p className="mt-4 text-center text-sm text-slate-500">Belum punya akun? <Link href="/daftar" className="font-semibold text-brand-700">Daftar reseller</Link></p>
+      <p className="mt-4 text-center text-sm text-slate-500">Belum punya akun? <Link href="/daftar" className="font-medium text-brand-700">Daftar reseller</Link></p>
     </AuthCard>
   );
 }

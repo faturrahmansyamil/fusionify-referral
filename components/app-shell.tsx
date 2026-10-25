@@ -4,18 +4,18 @@ import { logout } from "@/app/login/actions";
 export function AppShell({ links, email, home, children }: { links: [string, string][]; email: string; home: string; children: React.ReactNode }) {
   return (
     <div className="min-h-dvh">
-      <header className="sticky top-0 z-20 border-b border-slate-200/70 bg-white/85 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3">
+      <header className="sticky top-0 z-20 bg-parchment/85 backdrop-blur-md">
+        <div className="mx-auto flex h-20 max-w-[1432px] items-center gap-3 px-4 sm:px-8">
           <Logo href={home} />
           <form action={logout} className="ml-auto">
-            <button className="text-xs text-slate-500 hover:text-rose-600" title={email}>Keluar</button>
+            <button className="btn-ghost min-h-10 px-5 py-2" title={email}>Keluar</button>
           </form>
         </div>
-        <nav className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-3 pb-2">
+        <nav className="mx-auto flex max-w-[1432px] gap-1 overflow-x-auto border-b border-ash px-2 pb-3 sm:px-6">
           {links.map(([href, label]) => <NavLink key={href} href={href}>{label}</NavLink>)}
         </nav>
       </header>
-      <main className="mx-auto max-w-6xl px-4 py-6">{children}</main>
+      <main className="mx-auto max-w-[1432px] px-4 py-10 sm:px-8">{children}</main>
     </div>
   );
 }
