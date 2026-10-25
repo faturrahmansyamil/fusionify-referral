@@ -15,7 +15,7 @@ export default function DaftarPage() {
       </AuthCard>
     );
   return (
-    <AuthCard title="Daftar reseller" desc="Dapatkan link + kode promo sendiri dan pantau komisimu.">
+    <AuthCard title="Daftar reseller" desc="Kamu akan dapat link dan kode promo sendiri, lalu bisa cek komisimu di dashboard.">
       <form action={action} className="grid gap-3">
         <input name="fullName" required maxLength={80} placeholder="Nama lengkap" autoComplete="name" className="input" />
         <input name="email" type="email" required placeholder="Email" autoComplete="email" className="input" />

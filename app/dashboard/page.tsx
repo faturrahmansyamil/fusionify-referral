@@ -31,7 +31,7 @@ async function Overview() {
 
   return (
     <>
-      <PageTitle title={`Halo, ${profile.full_name.split(" ")[0] || "Reseller"} 👋`} desc="Pantau link, komisi, dan pencairanmu." />
+      <PageTitle title={`Halo, ${profile.full_name.split(" ")[0] || "Reseller"}`} desc="Pantau link, komisi, dan pencairanmu." />
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
         <Stat label="Klik link" value={String(clicks ?? 0)} />
         <Stat label="Order lunas" value={String(orders)} hint={clicks ? `konversi ${((orders / clicks) * 100).toFixed(1)}%` : undefined} />
@@ -96,7 +96,7 @@ async function Overview() {
               ))}
             </tbody>
           </table>
-          {!commissions?.length && <div className="p-5"><Empty>Belum ada komisi. Bagikan link-mu!</Empty></div>}
+          {!commissions?.length && <div className="p-5"><Empty>Belum ada komisi. Coba bagikan link-mu dulu.</Empty></div>}
         </div>
       </section>
 

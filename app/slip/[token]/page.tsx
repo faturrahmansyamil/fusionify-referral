@@ -39,7 +39,7 @@ async function SlipView({ params }: { params: Promise<{ token: string }> }) {
           </tbody>
           <tfoot><tr className="border-t-2 border-slate-200"><td colSpan={3} className="py-2 font-medium">Total</td><td className="text-right font-medium tabular-nums">{rupiah(s.total)}</td></tr></tfoot>
         </table>
-        <p className="mt-4 text-xs text-slate-400">Slip ini dibuat otomatis dari data pesanan lunas. Data pembeli tidak ditampilkan.</p>
+        <p className="mt-4 text-xs text-slate-400">Slip ini dibuat dari pesanan yang sudah lunas. Data pembeli tidak ikut ditampilkan.</p>
       </div>
     </article>
   );

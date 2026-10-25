@@ -3,11 +3,11 @@ set search_path = referral, extensions, public;
 -- Bagian 1 (produk & kampanye) selalu jalan. Bagian 2 jalan hanya jika user demo.* sudah ada di auth.users.
 insert into referral.products (id, name, description, price, commission_type, commission_value, sort) values
  ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e01', '[DEMO] Sewa Bot Auto Order Telegram — 1 Bulan', 'Bot jualan otomatis 24/7 di Telegram, katalog + pembayaran QRIS, setup dibantu.', 100000, 'percent', 15, 1),
- ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e05', '[DEMO] Sewa Bot Auto Order WhatsApp — 1 Bulan', 'Auto order lewat WhatsApp: katalog, format pesanan, rekap order, setup dibantu.', 125000, 'percent', 15, 2),
- ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e02', '[DEMO] Fusionify Bot — Paket Starter', 'Bot auto-reply WA/Telegram, 1 bulan.', 150000, 'percent', 15, 3),
- ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e03', '[DEMO] Top Up Saldo FTV Pay 100rb', 'Komisi flat per transaksi.', 101500, 'flat', 1000, 4),
- ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e04', '[DEMO] Jasa Landing Page UMKM', 'Desain + deploy 1 halaman.', 750000, 'percent', 8, 5),
- ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e06', '[DEMO] Desain Feed Instagram 9 Post', 'Template feed + caption, revisi 2x.', 200000, 'percent', 10, 6)
+ ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e05', '[DEMO] Sewa Bot Auto Order WhatsApp — 1 Bulan', 'Order otomatis lewat WhatsApp. Ada katalog, format pesanan, dan rekap order. Setup kami bantu.', 125000, 'percent', 15, 2),
+ ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e02', '[DEMO] Fusionify Bot — Paket Starter', 'Bot auto-reply untuk WA atau Telegram, aktif 1 bulan.', 150000, 'percent', 15, 3),
+ ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e03', '[DEMO] Top Up Saldo FTV Pay 100rb', 'Isi saldo FTV Pay senilai 100 ribu.', 101500, 'flat', 1000, 4),
+ ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e04', '[DEMO] Jasa Landing Page UMKM', 'Kami desain dan online-kan 1 halaman landing page.', 750000, 'percent', 8, 5),
+ ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e06', '[DEMO] Desain Feed Instagram 9 Post', '9 desain feed plus caption, revisi 2 kali.', 200000, 'percent', 10, 6)
 on conflict (id) do nothing;
 
 insert into referral.campaigns (id, name, slug, utm_source, utm_medium, utm_campaign) values

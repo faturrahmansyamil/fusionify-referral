@@ -54,17 +54,17 @@ async function ProductCount() {
 }
 
 const STEPS = [
-  { n: "01", t: "Daftar reseller", d: "Buat akun, admin menyetujui dan membuatkan kode referral untukmu." },
-  { n: "02", t: "Bagikan link", d: "Sebar link /r/kode atau kode promo di story IG, grup WA, atau ke teman." },
-  { n: "03", t: "Pembeli order", d: "Pembeli pesan lewat WhatsApp. Kode pesanan & referral tercatat otomatis." },
-  { n: "04", t: "Komisi cair", d: "Setelah lunas & masa hold 7 hari, komisi ditransfer lengkap dengan slip." },
+  { n: "01", t: "Daftar reseller", d: "Bikin akun dulu. Setelah admin setuju, kamu dapat kode referral." },
+  { n: "02", t: "Bagikan link", d: "Share link /r/kode atau kode promomu, misalnya di story IG atau grup WA." },
+  { n: "03", t: "Pembeli order", d: "Pembeli pesan lewat WhatsApp, dan order itu otomatis tercatat atas namamu." },
+  { n: "04", t: "Komisi cair", d: "Komisi ditahan 7 hari setelah order lunas, lalu kami transfer beserta slipnya." },
 ];
 
 const FAQ = [
-  { q: "Bagaimana cara memesan?", a: "Pilih produk di katalog, isi nama dan nomor WhatsApp, lalu klik Pesan via WhatsApp. Admin akan memproses pembayaranmu di chat." },
-  { q: "Apa itu kode promo reseller?", a: "Kode dari reseller Fusionify yang memberi diskon untukmu. Kalau datang lewat link reseller, kodenya tercatat otomatis." },
-  { q: "Bagaimana cara jadi reseller?", a: "Daftar lewat halaman Daftar reseller, tunggu admin menyetujui akunmu dan membuatkan kode referral, lalu bagikan link-mu." },
-  { q: "Kapan komisi bisa dicairkan?", a: "Komisi dari order lunas masuk masa hold 7 hari. Setelah itu statusnya siap dicairkan dan admin mentransfer disertai slip." },
+  { q: "Bagaimana cara memesan?", a: "Pilih produk, isi nama dan nomor WA, lalu klik Pesan via WhatsApp. Pembayarannya diurus admin lewat chat." },
+  { q: "Apa itu kode promo reseller?", a: "Kode diskon dari reseller Fusionify. Kalau kamu buka toko lewat link reseller, kodenya sudah otomatis terpasang." },
+  { q: "Bagaimana cara jadi reseller?", a: "Daftar dulu di halaman Daftar reseller. Setelah admin menyetujui akunmu dan membuatkan kode, kamu tinggal bagikan link-nya." },
+  { q: "Kapan komisi bisa dicairkan?", a: "Komisi dari order lunas ditahan 7 hari dulu. Habis itu admin transfer, dan kamu dapat slipnya." },
 ];
 
 export default function Home() {
@@ -95,12 +95,12 @@ export default function Home() {
 
         <div className="relative mx-auto grid max-w-[1432px] items-center gap-4 px-4 pt-8 pb-16 sm:px-8 lg:min-h-[720px] lg:grid-cols-[1.05fr_1fr] lg:pt-0">
           <div data-hero-copy="" className="relative z-10 text-center lg:text-left">
-            <p className="eyebrow text-ice animate-[fade-up_.6s_var(--ease-premium)_both]">PT Fusionify Digital Store · Program Reseller</p>
-            <h1 className="mt-6 text-[48px] sm:text-[68px] lg:text-[84px] animate-[rise_.8s_var(--ease-premium)_both]">Produk digital, langsung order lewat <span className="text-ice">WhatsApp.</span></h1>
-            <p className="mx-auto mt-6 max-w-xl text-[16px] text-frost/80 sm:text-[20px] lg:mx-0 animate-[fade-up_.7s_var(--ease-premium)_.16s_both]">Pilih produk, isi nama &amp; nomor WA, lalu lanjutkan pembayaran dengan admin. Kode pesananmu ikut terkirim otomatis.</p>
+            <p className="eyebrow text-ice animate-[fade-up_.6s_var(--ease-premium)_both]">PT Fusionify Digital Store</p>
+            <h1 className="mt-6 text-[48px] sm:text-[68px] lg:text-[84px] animate-[rise_.8s_var(--ease-premium)_both]">Beli produk digital Fusionify, ordernya lewat <span className="text-ice">WhatsApp.</span></h1>
+            <p className="mx-auto mt-6 max-w-xl text-[16px] text-frost/80 sm:text-[20px] lg:mx-0 animate-[fade-up_.7s_var(--ease-premium)_.16s_both]">Pilih produk, isi nama dan nomor WA, lalu bayar lewat chat dengan admin. Kode pesananmu ikut terkirim, jadi admin langsung tahu yang kamu pesan.</p>
             <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row lg:justify-start sm:justify-center animate-[fade-up_.7s_var(--ease-premium)_.24s_both]">
               <a href="#katalog" data-magnetic="" className="btn-primary w-full sm:w-auto">Pesan sekarang ▸</a>
-              <Link href="/daftar" data-magnetic="" className="btn-ghost-light w-full sm:w-auto">Mau jadi reseller? Daftar</Link>
+              <Link href="/daftar" data-magnetic="" className="btn-ghost-light w-full sm:w-auto">Daftar jadi reseller</Link>
             </div>
           </div>
           <div className="relative h-[360px] sm:h-[480px] lg:-ml-40 lg:h-[640px]">
@@ -115,9 +115,9 @@ export default function Home() {
       <section className="mx-auto max-w-[1432px] px-4 py-20 sm:px-8">
         <div className="grid grid-cols-2 gap-px overflow-hidden rounded-[28px] border border-ash bg-ash sm:rounded-[40px] lg:grid-cols-4">
           {[
-            { v: <><span data-count="15" data-suffix="%">15%</span></>, l: "Komisi hingga, per order lunas" },
-            { v: <><span data-count="7">7</span> hari</>, l: "Masa hold sebelum dicairkan" },
-            { v: <><span data-count="30">30</span> hari</>, l: "Link referral tetap tercatat" },
+            { v: <><span data-count="15" data-suffix="%">15%</span></>, l: "Komisi maksimal per order lunas" },
+            { v: <><span data-count="7">7</span> hari</>, l: "Komisi ditahan dulu sebelum cair" },
+            { v: <><span data-count="30">30</span> hari</>, l: "Masa berlaku link referral" },
             { v: <Suspense fallback={<span>–</span>}><ProductCount /></Suspense>, l: "Produk aktif di katalog" },
           ].map((s, i) => (
             <Reveal key={i} delay={0} className="bg-parchment p-6 sm:p-10">
@@ -132,7 +132,7 @@ export default function Home() {
       <section id="cara-kerja" className="relative isolate scroll-mt-6 overflow-hidden bg-navy py-20 text-parchment sm:py-28">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10"><div className="wash wash-anim top-0 right-0 h-96 w-96 bg-lake-blue/40" /><div className="grain absolute inset-0" /></div>
         <div className="mx-auto max-w-[1432px] px-4 sm:px-8">
-          <Reveal><p className="eyebrow text-ice">Cara kerja</p><h2 className="mt-3 max-w-3xl text-[40px] sm:text-[56px]">Dari klik sampai komisi cair, semuanya tercatat.</h2></Reveal>
+          <Reveal><p className="eyebrow text-ice">Cara kerja</p><h2 className="mt-3 max-w-3xl text-[40px] sm:text-[56px]">Begini alurnya, dari daftar sampai komisi cair.</h2></Reveal>
           <ol className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {STEPS.map((s) => (
               <Reveal as="li" key={s.n} className="rounded-[28px] border border-parchment/15 bg-navy-2/60 p-8 sm:rounded-[40px]">
@@ -147,7 +147,7 @@ export default function Home() {
 
       {/* BENTO — program features */}
       <section id="fitur" className="mx-auto max-w-[1432px] px-4 py-20 sm:px-8 sm:py-28">
-        <Reveal><p className="eyebrow">Program reseller</p><h2 className="mt-3 max-w-3xl text-[40px] sm:text-[56px]">Program reseller yang rapi dari klik sampai slip.</h2></Reveal>
+        <Reveal><p className="eyebrow">Program reseller</p><h2 className="mt-3 max-w-3xl text-[40px] sm:text-[56px]">Yang kamu dapat sebagai reseller</h2></Reveal>
         <div className="mt-12 grid auto-rows-[minmax(220px,auto)] gap-4 md:grid-cols-6">
           <Reveal className="card-elevated relative overflow-hidden p-8 sm:p-10 md:col-span-4 md:row-span-2" >
             <div aria-hidden className="pointer-events-none absolute -right-16 -bottom-20 size-80">
@@ -158,14 +158,14 @@ export default function Home() {
             <div className="relative flex h-full max-w-lg flex-col">
               <span aria-hidden className="grid size-12 place-items-center rounded-full bg-lake-blue text-[20px] text-parchment">◎</span>
               <h3 className="mt-8 text-[32px] sm:text-[44px]">Link &amp; kode promo sendiri</h3>
-              <p className="mt-4 text-[16px] text-graphite">Setiap reseller punya link /r/kode dan kode promo sendiri. Pembeli dapat diskon, kamu dapat komisi.</p>
+              <p className="mt-4 text-[16px] text-graphite">Tiap reseller dapat link /r/kode dan kode promo sendiri. Pembeli yang pakai kodemu dapat diskon, kamu dapat komisi.</p>
               <div className="mt-auto pt-8"><code className="rounded-full border border-navy/20 bg-parchment/70 px-4 py-2 text-[14px]">referral.syamxuanify.biz.id/r/<b className="font-medium text-lake-blue">KODEMU</b></code></div>
             </div>
           </Reveal>
-          <Reveal className="card p-8 md:col-span-2" ><span aria-hidden className="text-[20px] text-lake-blue">↗</span><h3 className="mt-6 text-[24px]">Order lewat WhatsApp</h3><p className="mt-3 text-[15px] text-graphite">Kode pesanan #FD-XXXXXX ikut terkirim otomatis ke admin.</p></Reveal>
-          <Reveal className="rounded-[24px] bg-navy p-8 text-parchment sm:rounded-[40px] md:col-span-2" ><span aria-hidden className="text-[20px] text-ice">▤</span><h3 className="mt-6 text-[24px]">Slip transparan</h3><p className="mt-3 text-[15px] text-frost/75">Komisi dicairkan dengan bukti transfer dan slip publik yang bisa dicek kapan saja.</p></Reveal>
-          <Reveal className="card p-8 md:col-span-3" ><span aria-hidden className="text-[20px] text-lake-blue">◷</span><h3 className="mt-6 text-[24px]">Peringkat bulanan</h3><p className="mt-3 text-[15px] text-graphite">Leaderboard reseller tiap bulan, lengkap dengan jumlah order.</p></Reveal>
-          <Reveal className="card p-8 md:col-span-3" ><span aria-hidden className="text-[20px] text-lake-blue">⚑</span><h3 className="mt-6 text-[24px]">Kampanye &amp; anti-curang</h3><p className="mt-3 text-[15px] text-graphite">Lacak kampanye lewat ?c= atau UTM; order mencurigakan ditandai untuk ditinjau admin.</p></Reveal>
+          <Reveal className="card p-8 md:col-span-2" ><span aria-hidden className="text-[20px] text-lake-blue">↗</span><h3 className="mt-6 text-[24px]">Order lewat WhatsApp</h3><p className="mt-3 text-[15px] text-graphite">Pesan WA ke admin sudah berisi kode pesanan #FD-XXXXXX.</p></Reveal>
+          <Reveal className="rounded-[24px] bg-navy p-8 text-parchment sm:rounded-[40px] md:col-span-2" ><span aria-hidden className="text-[20px] text-ice">▤</span><h3 className="mt-6 text-[24px]">Slip pencairan</h3><p className="mt-3 text-[15px] text-frost/75">Tiap pencairan ada bukti transfer dan slip yang bisa kamu buka kapan saja.</p></Reveal>
+          <Reveal className="card p-8 md:col-span-3" ><span aria-hidden className="text-[20px] text-lake-blue">◷</span><h3 className="mt-6 text-[24px]">Peringkat bulanan</h3><p className="mt-3 text-[15px] text-graphite">Lihat posisimu di antara reseller lain bulan ini, berdasarkan jumlah order.</p></Reveal>
+          <Reveal className="card p-8 md:col-span-3" ><span aria-hidden className="text-[20px] text-lake-blue">⚑</span><h3 className="mt-6 text-[24px]">Lacak kampanye</h3><p className="mt-3 text-[15px] text-graphite">Tambahkan ?c= atau UTM ke link untuk tahu promosi mana yang jalan. Order yang mencurigakan dicek admin dulu.</p></Reveal>
         </div>
       </section>
 
@@ -201,7 +201,7 @@ export default function Home() {
         <div className="mx-auto flex max-w-[1432px] flex-col gap-8 px-4 py-16 sm:px-8 md:flex-row md:items-end">
           <div>
             <Logo light />
-            <p className="mt-6 max-w-md font-serif text-[32px] leading-tight">Jualan produk digital, komisinya jelas.</p>
+            <p className="mt-6 max-w-md font-serif text-[32px] leading-tight">Jual produk Fusionify, komisinya tercatat.</p>
           </div>
           <div className="flex flex-col gap-3 md:ml-auto md:items-end">
             <Link href="/daftar" data-magnetic="" className="btn-light">Daftar reseller</Link>

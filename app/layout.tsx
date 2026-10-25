@@ -7,7 +7,7 @@ const mono = JetBrains_Mono({ variable: "--font-mono-ui", subsets: ["latin"], we
 
 export const metadata: Metadata = {
   title: { default: "Fusionify Referral", template: "%s · Fusionify Referral" },
-  description: "Katalog produk Fusionify + program reseller: link & kode promo, komisi otomatis, slip transparan.",
+  description: "Katalog produk digital Fusionify dan program reseller. Reseller dapat link dan kode promo sendiri, komisinya tercatat sampai cair.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://referral.syamxuanify.biz.id"),
 };
 export const viewport: Viewport = { themeColor: "#14213d" };
