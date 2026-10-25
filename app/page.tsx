@@ -22,7 +22,7 @@ async function Catalog() {
   return (
     <>
       {refCode && (
-        <p className="mb-6 rounded-[24px] bg-periwinkle-mist px-6 py-4 text-[14px]">
+        <p className="mb-6 rounded-[24px] bg-frost px-6 py-4 text-[14px]">
           Kamu datang lewat reseller <b className="font-medium">{refCode}</b>. Pesananmu akan tercatat atas nama mereka.
         </p>
       )}
@@ -74,9 +74,8 @@ export default function Home() {
       {/* HERO — navy stage with the 3D S-form */}
       <section data-hero="" className="relative isolate overflow-hidden bg-navy text-parchment">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-          <div className="wash wash-anim -top-32 -left-24 h-96 w-[30rem] bg-lake-blue/60" />
-          <div className="wash wash-anim top-1/3 -right-24 h-96 w-[28rem] bg-ice/25" />
-          <div className="wash wash-anim -bottom-40 left-1/4 h-80 w-[26rem] bg-lake-deep/70" />
+          <div className="wash wash-anim orb-blue -top-40 -left-32 size-[32rem]" />
+          <div className="wash wash-anim orb-light -right-32 -bottom-48 size-[28rem]" />
           <div className="grain absolute inset-0" />
         </div>
         <header className="relative z-10 mx-auto flex h-20 w-full max-w-[1432px] items-center gap-6 px-4 sm:px-8">
@@ -113,7 +112,7 @@ export default function Home() {
 
       {/* STATS — facts from the program rules */}
       <section className="mx-auto max-w-[1432px] px-4 py-20 sm:px-8">
-        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-[28px] border border-ash bg-ash sm:rounded-[40px] lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-[24px] border border-ash bg-ash sm:rounded-[40px] lg:grid-cols-4">
           {[
             { v: <><span data-count="15" data-suffix="%">15%</span></>, l: "Komisi maksimal per order lunas" },
             { v: <><span data-count="7">7</span> hari</>, l: "Komisi ditahan dulu sebelum cair" },
@@ -130,12 +129,12 @@ export default function Home() {
 
       {/* CARA KERJA — dark contrast section */}
       <section id="cara-kerja" className="relative isolate scroll-mt-6 overflow-hidden bg-navy py-20 text-parchment sm:py-28">
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10"><div className="wash wash-anim top-0 right-0 h-96 w-96 bg-lake-blue/40" /><div className="grain absolute inset-0" /></div>
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10"><div className="wash orb-blue -top-40 -right-32 size-[28rem] opacity-30" /><div className="ring-deco -top-24 -right-24 size-[22rem] text-parchment/10 sm:size-[30rem]" /><div className="grain absolute inset-0" /></div>
         <div className="mx-auto max-w-[1432px] px-4 sm:px-8">
           <Reveal><p className="eyebrow text-ice">Cara kerja</p><h2 className="mt-3 max-w-3xl text-[40px] sm:text-[56px]">Begini alurnya, dari daftar sampai komisi cair.</h2></Reveal>
           <ol className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {STEPS.map((s) => (
-              <Reveal as="li" key={s.n} className="rounded-[28px] border border-parchment/15 bg-navy-2/60 p-8 sm:rounded-[40px]">
+              <Reveal as="li" key={s.n} className="rounded-[24px] border border-parchment/15 bg-navy-2/60 p-8 sm:rounded-[40px]">
                 <span className="font-serif text-[56px] leading-none text-lake-blue">{s.n}</span>
                 <h3 className="mt-6 text-[26px]">{s.t}</h3>
                 <p className="mt-3 text-[15px] text-frost/75">{s.d}</p>
@@ -151,9 +150,9 @@ export default function Home() {
         <div className="mt-12 grid auto-rows-[minmax(220px,auto)] gap-4 md:grid-cols-6">
           <Reveal className="card-elevated relative overflow-hidden p-8 sm:p-10 md:col-span-4 md:row-span-2" >
             <div aria-hidden className="pointer-events-none absolute -right-16 -bottom-20 size-80">
-              <div className="wash wash-anim top-0 left-0 size-56 bg-lake-blue/50" />
-              <div className="wash wash-anim top-16 left-24 size-48 bg-ice" />
-              <div className="wash wash-anim top-28 left-4 size-40 bg-mint/70" />
+              <div className="wash orb-blue top-8 left-8 size-56 opacity-35" />
+              <div className="ring-deco top-10 left-10 size-64 text-lake-blue/25" />
+              <div className="ring-deco top-20 left-20 size-44 text-lake-blue/20" />
             </div>
             <div className="relative flex h-full max-w-lg flex-col">
               <span aria-hidden className="grid size-12 place-items-center rounded-full bg-lake-blue text-[20px] text-parchment">◎</span>
@@ -170,7 +169,7 @@ export default function Home() {
       </section>
 
       <section id="katalog" className="relative isolate scroll-mt-6 bg-frost/50 py-20 sm:py-28">
-        <Washes className="opacity-60" />
+        <Washes />
         <div className="mx-auto max-w-5xl px-4 sm:px-8">
           <Reveal>
             <p className="eyebrow">Katalog</p>

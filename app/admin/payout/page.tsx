@@ -22,7 +22,7 @@ async function Inner() {
         <h2 className="text-[24px]">Siap dicairkan</h2>
         <ul className="mt-3 grid gap-2 text-sm">
           {[...totals].map(([rid, total]) => (
-            <li key={rid} className="flex flex-wrap items-center gap-3 rounded-[20px] border border-slate-100 px-3 py-2">
+            <li key={rid} className="flex flex-wrap items-center gap-3 rounded-[24px] border border-slate-100 px-3 py-2">
               <span className="flex-1"><b>{who.get(rid)?.full_name}</b> <span className="text-xs text-slate-500">{who.get(rid)?.payout_method} {who.get(rid)?.payout_account}</span></span>
               <b className="tabular-nums">{rupiah(total)}</b>
               <ActionForm action={createPayout} className="flex items-center gap-2"><input type="hidden" name="resellerId" value={rid} /><button className="btn-primary min-h-8 px-3 py-1.5 text-xs">Buat payout</button></ActionForm>
@@ -35,7 +35,7 @@ async function Inner() {
         <h2 className="text-[24px]">Riwayat payout</h2>
         <ul className="mt-3 grid gap-2 text-sm">
           {(payouts ?? []).map((p) => (
-            <li key={p.id} className="grid gap-2 rounded-[20px] border border-slate-100 px-3 py-2">
+            <li key={p.id} className="grid gap-2 rounded-[24px] border border-slate-100 px-3 py-2">
               <div className="flex flex-wrap items-center gap-3">
                 <span className="flex-1">{who.get(p.reseller_id)?.full_name} · {tanggal(p.created_at)}</span>
                 <b className="tabular-nums">{rupiah(p.total)}</b><Badge tone={p.status}>{p.status}</Badge>

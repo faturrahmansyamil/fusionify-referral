@@ -1,31 +1,40 @@
 @import "tailwindcss";
 
 /* Fusionify Referral — editorial parchment system (serif headings + mono UI) */
+/*
+  Fusionify palette — single source of truth. Never hardcode hex in components.
+  Brand (from the official seal): blue #0d6cd7, light #539de9, navy #14213d.
+  Blue scale = tints/shades of the seal blue; neutrals are cool greys tinted toward navy.
+  AA: navy/graphite on parchment ≥ 7:1, smoke on parchment 4.6:1, parchment on lake-blue 4.7:1,
+      parchment on navy 14:1, ice on navy 9:1.
+*/
 @theme {
-  --color-parchment: #f3f5f9; /* blue-tinted canvas */
-  --color-lake-blue: #0d6cd7; /* Fusionify seal blue (sampled) */
-  --color-lake-deep: #0a56ab; /* derived hover (−20% L) */
-  --color-lake-light: #539de9; /* Fusionify 'i' dot (sampled) */
-  --color-navy: #14213d; /* Syamxuanify dongker */
-  --color-navy-2: #1b2c52;
-  --color-ice: #a9cdf2;
-  --color-frost: #d9e8f8;
-  --color-periwinkle-mist: #d6e6f8;
-  --color-sky-blue: #8fbdf0;
-  --color-mint: #9ff0d8;
-  --color-coral: #ffa58a;
-  --color-gold: #ecda98;
-  --color-crimson: #f37a0a;
-  --color-off-black: #14213d;
-  --color-ink: #000000;
-  --color-graphite: #47536b;
-  --color-smoke: #6e7a90;
-  --color-ash: #cfd6e3;
+  /* brand blues */
+  --color-lake-50: #eef5fd;
+  --color-frost: #d9e8f8;     /* blue-100: soft surfaces, selection */
+  --color-ice: #a9cdf2;       /* blue-200: accents on navy */
+  --color-lake-light: #539de9;/* blue-400: seal 'i' dot, decorative only */
+  --color-lake-blue: #0d6cd7; /* blue-600: primary action */
+  --color-lake-deep: #0a56ab; /* blue-700: hover / links on light */
+  --color-navy-2: #1b2c52;    /* navy raised surface */
+  --color-navy: #14213d;      /* dark sections, text */
 
-  /* remap legacy tokens so every page inherits the new palette */
+  /* neutrals */
+  --color-parchment: #f3f5f9; /* page canvas */
+  --color-ash: #cfd6e3;       /* borders */
+  --color-smoke: #5d697f;     /* muted text (AA) */
+  --color-graphite: #47536b;  /* body secondary */
+  --color-off-black: #14213d; /* alias of navy for text */
+
+  /* status (functional only, muted to sit with the blues) */
+  --color-ok: #dcefe6;   --color-ok-ink: #1d6b4a;
+  --color-warn: #f6ecd2; --color-warn-ink: #7a5600;
+  --color-bad: #f8e1df;  --color-bad-ink: #a8332a;
+
+  /* legacy aliases → same palette */
   --color-white: #f3f5f9;
-  --color-brand-50: #e6f0fb;
-  --color-brand-100: #d6e6f8;
+  --color-brand-50: #eef5fd;
+  --color-brand-100: #d9e8f8;
   --color-brand-500: #0d6cd7;
   --color-brand-600: #0d6cd7;
   --color-brand-700: #0a56ab;
@@ -34,7 +43,7 @@
   --color-slate-100: #e1e7f0;
   --color-slate-200: #cfd6e3;
   --color-slate-300: #aeb8c9;
-  --color-slate-400: #6e7a90;
+  --color-slate-400: #5d697f;
   --color-slate-500: #5d697f;
   --color-slate-600: #47536b;
   --color-slate-700: #2e3a55;
@@ -65,10 +74,10 @@ h1, h2, h3, .serif {
   text-wrap: balance;
 }
 p { text-wrap: pretty; }
-::selection { background: var(--color-periwinkle-mist); }
+::selection { background: var(--color-frost); }
 
 @utility card { @apply rounded-[24px] border border-ash bg-parchment sm:rounded-[40px]; }
-@utility card-elevated { @apply rounded-[24px] bg-periwinkle-mist sm:rounded-[40px]; }
+@utility card-elevated { @apply rounded-[24px] bg-frost sm:rounded-[40px]; }
 @utility btn { @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-[100px] px-8 py-4 font-mono text-[14px] font-normal tracking-[-0.02em] uppercase transition duration-200 ease-(--ease-premium) active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50; }
 @utility btn-primary { @apply btn bg-lake-blue text-parchment hover:bg-lake-deep; }
 @utility btn-dark { @apply btn bg-navy text-parchment hover:bg-navy-2; }
@@ -81,7 +90,12 @@ p { text-wrap: pretty; }
 @utility eyebrow { @apply font-mono text-[12px] tracking-[-0.033em] text-smoke uppercase; }
 @utility link-arrow { @apply inline-flex items-center gap-1 font-mono text-[14px] tracking-[-0.02em] text-off-black uppercase hover:underline; }
 
-.wash { position: absolute; border-radius: 9999px; filter: blur(64px); pointer-events: none; }
+/* Decorative "donuts": one blur, one opacity scale, blues only. Parent must clip (overflow-hidden). */
+.wash { position: absolute; border-radius: 9999px; filter: blur(80px); pointer-events: none; transform: translateZ(0); }
+.orb-blue { background: var(--color-lake-blue); opacity: .45; }
+.orb-light { background: var(--color-lake-light); opacity: .3; }
+.orb-ice { background: var(--color-ice); opacity: .55; }
+.ring-deco { position: absolute; border-radius: 9999px; border: 1px solid currentColor; pointer-events: none; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -104,8 +118,7 @@ html.js [data-reveal].is-in { animation: none; }
 
 .wash-anim { animation: drift 18s ease-in-out infinite alternate; }
 .wash-anim:nth-child(2) { animation-duration: 23s; animation-delay: -6s; }
-.wash-anim:nth-child(3) { animation-duration: 27s; animation-delay: -12s; }
-@keyframes drift { 0% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(6%, -4%, 0) scale(1.12); } 100% { transform: translate3d(-5%, 5%, 0) scale(.95); } }
+@keyframes drift { 0% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(4%, -3%, 0) scale(1.06); } 100% { transform: translate3d(-3%, 3%, 0) scale(.97); } }
 
 .grain { background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px); background-size: 22px 22px; }
 

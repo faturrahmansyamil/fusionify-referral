@@ -28,7 +28,7 @@ export function OrderForm({ products, refCode }: { products: Product[]; refCode:
           const m = productMeta(p.name);
           const on = productId === p.id;
           return (
-            <label key={p.id} data-tilt="" className={`group relative flex cursor-pointer has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-lake-blue flex-col gap-4 overflow-hidden rounded-[28px] border p-6 transition-colors duration-200 ${on ? "border-lake-blue bg-periwinkle-mist" : "border-ash bg-parchment hover:border-navy"}`}>
+            <label key={p.id} data-tilt="" className={`group relative flex cursor-pointer has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-lake-blue flex-col gap-4 overflow-hidden rounded-[24px] border p-6 transition-colors duration-200 ${on ? "border-lake-blue bg-frost" : "border-ash bg-parchment hover:border-navy"}`}>
               <input type="radio" name="productId" value={p.id} checked={on} onChange={() => setProductId(p.id)} className="sr-only" />
               <span className="flex items-start justify-between gap-3">
                 <span aria-hidden className={`grid size-12 place-items-center rounded-full text-[20px] ${m.tone}`}>{m.icon}</span>
@@ -72,9 +72,9 @@ export function OrderForm({ products, refCode }: { products: Product[]; refCode:
         </div>
       </div>
 
-      {state && !state.ok && <p role="alert" className="rounded-[24px] bg-coral/25 px-5 py-3 text-sm text-off-black">{state.error}</p>}
+      {state && !state.ok && <p role="alert" className="rounded-[24px] bg-bad px-5 py-3 text-sm text-bad-ink">{state.error}</p>}
       {state?.ok && (
-        <p className="rounded-[24px] bg-mint/50 px-5 py-3 text-sm text-off-black">
+        <p className="rounded-[24px] bg-ok px-5 py-3 text-sm text-ok-ink">
           Pesanan <b>#{state.order.order_ref}</b> dibuat. Kalau WhatsApp tidak terbuka, <a className="font-medium underline" href={state.waUrl}>klik di sini</a>.
         </p>
       )}

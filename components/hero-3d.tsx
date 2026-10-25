@@ -8,9 +8,9 @@ function StaticShapes() {
   // no-WebGL / low-end / pre-hydration: the real logo mark, same footprint as the 3D (no layout shift)
   return (
     <div aria-hidden className="absolute inset-0 grid place-items-center">
-      <div className="absolute size-72 rounded-full bg-lake-blue/40 blur-3xl sm:size-96" />
+      <div className="wash orb-blue size-72 sm:size-96" />
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/fusionify-seal.png" alt="" width={256} height={256} className="relative size-56 drop-shadow-[0_30px_60px_rgba(13,108,215,.55)] sm:size-72" />
+      <img src="/fusionify-seal.png" alt="" width={256} height={256} className="relative size-56 drop-shadow-[0_30px_60px_color-mix(in_srgb,var(--color-lake-blue)_55%,transparent)] sm:size-72" />
     </div>
   );
 }

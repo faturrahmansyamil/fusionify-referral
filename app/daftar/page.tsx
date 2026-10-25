@@ -20,7 +20,7 @@ export default function DaftarPage() {
         <input name="fullName" required maxLength={80} placeholder="Nama lengkap" autoComplete="name" className="input" />
         <input name="email" type="email" required placeholder="Email" autoComplete="email" className="input" />
         <input name="password" type="password" required minLength={8} placeholder="Password (min. 8)" autoComplete="new-password" className="input" />
-        {msg && <p className="text-sm text-rose-600">{msg}</p>}
+        {msg && <p className="text-sm text-bad-ink">{msg}</p>}
         <button disabled={pending} className="btn-primary">Daftar</button>
       </form>
       <p className="mt-4 text-center text-sm text-slate-500">Sudah punya akun? <Link href="/login" className="font-medium text-brand-700">Masuk</Link></p>

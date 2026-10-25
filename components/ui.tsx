@@ -21,16 +21,16 @@ export function Stat({ label, value, hint }: { label: string; value: string; hin
 }
 
 const TONE: Record<string, string> = {
-  pending: "bg-gold/50",
-  approved: "bg-periwinkle-mist",
-  paid: "bg-mint/60",
-  active: "bg-mint/60",
+  pending: "bg-warn text-warn-ink border-transparent",
+  approved: "bg-frost border-transparent",
+  paid: "bg-ok text-ok-ink border-transparent",
+  active: "bg-ok text-ok-ink border-transparent",
   void: "bg-transparent",
   cancelled: "bg-transparent",
-  refunded: "bg-coral/30",
-  banned: "bg-coral/30",
-  draft: "bg-gold/50",
-  flag: "bg-coral/30",
+  refunded: "bg-bad text-bad-ink border-transparent",
+  banned: "bg-bad text-bad-ink border-transparent",
+  draft: "bg-warn text-warn-ink border-transparent",
+  flag: "bg-bad text-bad-ink border-transparent",
 };
 
 export function Badge({ tone, children }: { tone: string; children: React.ReactNode }) {
@@ -66,10 +66,9 @@ export function NavLink({ href, children }: { href: string; children: React.Reac
 
 export function Washes({ className = "" }: { className?: string }) {
   return (
-    <div aria-hidden className={`pointer-events-none absolute -inset-x-40 -top-20 -bottom-40 -z-10 ${className}`}>
-      <div className="wash wash-anim -top-24 -left-24 h-80 w-96 bg-sky-blue/70" />
-      <div className="wash wash-anim top-10 right-[-6rem] h-96 w-[28rem] bg-ice/80" />
-      <div className="wash wash-anim bottom-[-8rem] left-1/3 h-80 w-96 bg-mint/50" />
+    <div aria-hidden className={`pointer-events-none absolute inset-0 -z-10 overflow-hidden ${className}`}>
+      <div className="wash wash-anim orb-ice -top-32 -left-32 size-[26rem]" />
+      <div className="wash wash-anim orb-light -right-40 -bottom-40 size-[26rem] opacity-20" />
     </div>
   );
 }

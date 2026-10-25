@@ -25,7 +25,7 @@ async function Inner() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             {p.status !== "active" && <ActionForm action={setResellerStatus} className="flex items-center gap-2"><input type="hidden" name="id" value={p.id} /><input type="hidden" name="status" value="active" /><button className="btn-primary min-h-8 px-3 py-1.5 text-xs">Setujui</button></ActionForm>}
-            {p.status !== "banned" && <ActionForm action={setResellerStatus} confirm="Nonaktifkan reseller ini?" className="flex items-center gap-2"><input type="hidden" name="id" value={p.id} /><input type="hidden" name="status" value="banned" /><button className="btn-ghost min-h-8 px-3 py-1.5 text-xs text-rose-600">Nonaktifkan</button></ActionForm>}
+            {p.status !== "banned" && <ActionForm action={setResellerStatus} confirm="Nonaktifkan reseller ini?" className="flex items-center gap-2"><input type="hidden" name="id" value={p.id} /><input type="hidden" name="status" value="banned" /><button className="btn-ghost min-h-8 px-3 py-1.5 text-xs text-bad-ink">Nonaktifkan</button></ActionForm>}
           </div>
           <ActionForm action={createCode} className="flex flex-wrap items-center gap-2">
             <input type="hidden" name="resellerId" value={p.id} />

@@ -27,7 +27,7 @@ async function Overview() {
   const orders = (commissions ?? []).filter((c) => c.status !== "void").length;
   const main = codes?.find((c) => c.active);
   const link = main ? `${site}/r/${main.code}` : null;
-  const qr = link ? await QRCode.toDataURL(link, { margin: 1, width: 360, color: { dark: "#242424", light: "#f6f3f1" } }) : null;
+  const qr = link ? await QRCode.toDataURL(link, { margin: 1, width: 360, color: { dark: "#14213d", light: "#f3f5f9" } }) : null;
 
   return (
     <>
@@ -46,7 +46,7 @@ async function Overview() {
           {main && link ? (
             <div className="mt-4 flex flex-col gap-5 sm:flex-row">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={qr!} alt={`QR ${main.code}`} className="size-36 rounded-[20px] border border-slate-200" />
+              <img src={qr!} alt={`QR ${main.code}`} className="size-36 rounded-[24px] border border-slate-200" />
               <div className="grid flex-1 content-start gap-3 text-sm">
                 <div>
                   <p className="label">Link kamu</p>
@@ -54,7 +54,7 @@ async function Overview() {
                 </div>
                 <div>
                   <p className="label">Kode promo</p>
-                  <div className="flex items-center gap-2"><code className="rounded-full bg-periwinkle-mist px-3 py-1 font-medium">{main.code}</code>
+                  <div className="flex items-center gap-2"><code className="rounded-full bg-frost px-3 py-1 font-medium">{main.code}</code>
                     <span className="text-slate-500">diskon {main.discount_percent}% untuk pembeli</span></div>
                 </div>
                 <p className="text-xs text-slate-400">Tambah <code>?c=nama-kampanye</code> di link untuk melacak kampanye (misal story IG vs grup WA).</p>
@@ -67,7 +67,7 @@ async function Overview() {
           <ol className="mt-3 grid gap-2 text-sm">
             {(board ?? []).map((r: { name: string; orders: number; commission: number }, i: number) => (
               <li key={i} className="flex items-center gap-3">
-                <span className={`grid size-6 place-items-center rounded-full text-xs font-medium ${i < 3 ? "bg-brand-600 text-white" : "bg-slate-100 text-slate-500"}`}>{i + 1}</span>
+                <span className={`grid size-6 place-items-center rounded-full text-xs font-medium ${i < 3 ? "bg-lake-blue text-parchment" : "bg-slate-100 text-slate-500"}`}>{i + 1}</span>
                 <span className="flex-1">{r.name}</span><span className="text-slate-500">{r.orders} order</span>
               </li>
             ))}
@@ -90,7 +90,7 @@ async function Overview() {
                   <td className="pr-5">
                     <Badge tone={c.status}>{c.status}</Badge>
                     {c.status === "pending" && <div className="text-xs text-slate-400">s/d {tanggal(c.hold_until)}</div>}
-                    {c.risk_flags.map((f) => <div key={f} className="text-xs text-rose-600">{FLAG_LABEL[f] ?? f}</div>)}
+                    {c.risk_flags.map((f) => <div key={f} className="text-xs text-bad-ink">{FLAG_LABEL[f] ?? f}</div>)}
                   </td>
                 </tr>
               ))}
@@ -104,7 +104,7 @@ async function Overview() {
         <h2 className="text-[24px]">Pencairan</h2>
         <ul className="mt-3 grid gap-2 text-sm">
           {(payouts ?? []).map((p) => (
-            <li key={p.id} className="flex items-center gap-3 rounded-[20px] border border-slate-100 px-3 py-2">
+            <li key={p.id} className="flex items-center gap-3 rounded-[24px] border border-slate-100 px-3 py-2">
               <span className="flex-1">{tanggal(p.created_at)} · <b className="tabular-nums">{rupiah(p.total)}</b></span>
               <Badge tone={p.status}>{p.status}</Badge>
               <Link href={`/slip/${p.slip_token}`} className="text-xs font-medium text-brand-700">Lihat slip →</Link>

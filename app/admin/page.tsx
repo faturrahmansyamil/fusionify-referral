@@ -32,11 +32,11 @@ async function Inner() {
         </div>
         <ul className="mt-3 grid gap-2 text-sm">
           {(flagged ?? []).map((c) => (
-            <li key={c.id} className="flex flex-wrap items-center gap-3 rounded-[20px] border border-rose-100 bg-rose-50/40 px-3 py-2">
+            <li key={c.id} className="flex flex-wrap items-center gap-3 rounded-[24px] border border-transparent bg-bad/60 px-3 py-2">
               <span className="font-mono text-xs">{c.order_ref}</span><b className="tabular-nums">{rupiah(c.amount)}</b>
-              <span className="flex-1 text-xs text-rose-700">{c.risk_flags.map((f: string) => FLAG_LABEL[f] ?? f).join(", ")}</span>
+              <span className="flex-1 text-xs text-bad-ink">{c.risk_flags.map((f: string) => FLAG_LABEL[f] ?? f).join(", ")}</span>
               <ActionForm action={reviewCommission} className="flex items-center gap-2"><input type="hidden" name="id" value={c.id} /><input type="hidden" name="approve" value="1" /><button className="btn-ghost min-h-8 px-2 py-1 text-xs">Setujui</button></ActionForm>
-              <ActionForm action={reviewCommission} confirm="Batalkan komisi ini?" className="flex items-center gap-2"><input type="hidden" name="id" value={c.id} /><input type="hidden" name="approve" value="0" /><button className="btn-ghost min-h-8 px-2 py-1 text-xs text-rose-600">Tolak</button></ActionForm>
+              <ActionForm action={reviewCommission} confirm="Batalkan komisi ini?" className="flex items-center gap-2"><input type="hidden" name="id" value={c.id} /><input type="hidden" name="approve" value="0" /><button className="btn-ghost min-h-8 px-2 py-1 text-xs text-bad-ink">Tolak</button></ActionForm>
             </li>
           ))}
           {!flagged?.length && <Empty>Tidak ada komisi mencurigakan.</Empty>}
@@ -66,7 +66,7 @@ async function Inner() {
                         <ActionForm action={setOrderStatus} confirm="Batalkan pesanan?" className="flex items-center gap-1"><input type="hidden" name="id" value={o.id} /><input type="hidden" name="status" value="cancelled" /><button className="btn-ghost min-h-8 px-2.5 py-1 text-xs">Batal</button></ActionForm>
                       </div>
                     )}
-                    {o.status === "paid" && <ActionForm action={setOrderStatus} confirm="Refund? Komisi yang belum cair akan dibatalkan." className="flex items-center gap-1"><input type="hidden" name="id" value={o.id} /><input type="hidden" name="status" value="refunded" /><button className="btn-ghost min-h-8 px-2.5 py-1 text-xs text-rose-600">Refund</button></ActionForm>}
+                    {o.status === "paid" && <ActionForm action={setOrderStatus} confirm="Refund? Komisi yang belum cair akan dibatalkan." className="flex items-center gap-1"><input type="hidden" name="id" value={o.id} /><input type="hidden" name="status" value="refunded" /><button className="btn-ghost min-h-8 px-2.5 py-1 text-xs text-bad-ink">Refund</button></ActionForm>}
                   </td>
                 </tr>
               ))}

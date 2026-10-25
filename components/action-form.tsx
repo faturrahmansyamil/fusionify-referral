@@ -10,7 +10,7 @@ export function ActionForm({ action, children, className = "", confirm }: {
   return (
     <form action={run} className={className} onSubmit={(e) => { if (confirm && !window.confirm(confirm)) e.preventDefault(); }}>
       <fieldset disabled={pending} className="contents">{children}</fieldset>
-      {msg && <span className={`text-xs ${msg.startsWith("Gagal") ? "text-rose-600" : "text-emerald-700"}`}>{msg}</span>}
+      {msg && <span className={`text-xs ${msg.startsWith("Gagal") ? "text-bad-ink" : "text-ok-ink"}`}>{msg}</span>}
     </form>
   );
 }
