@@ -1,6 +1,6 @@
 "use client";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const HeroScene = dynamic(() => import("./hero-scene"), { ssr: false, loading: () => null });
 
@@ -24,6 +24,19 @@ function canUseWebGL() {
 
 export function Hero3D() {
   const [mode, setMode] = useState<"static" | "still" | "live">("static");
+  const [visible, setVisible] = useState(true);
+  const box = useRef<HTMLDivElement>(null);
+  // Pause the render loop when the hero is off-screen or the tab is hidden.
+  useEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    let inView = true;
+    const sync = () => setVisible(inView && !document.hidden);
+    const io = new IntersectionObserver(([e]) => { inView = e.isIntersecting; sync(); });
+    io.observe(el);
+    document.addEventListener("visibilitychange", sync);
+    return () => { io.disconnect(); document.removeEventListener("visibilitychange", sync); };
+  }, []);
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const nav = navigator as Navigator & { deviceMemory?: number; connection?: { saveData?: boolean } };
@@ -33,8 +46,8 @@ export function Hero3D() {
     return () => clearTimeout(id);
   }, []);
   return (
-    <div className="absolute inset-0">
-      {mode === "static" ? <StaticShapes /> : <HeroScene animate={mode === "live"} />}
+    <div ref={box} className="absolute inset-0">
+      {mode === "static" ? <StaticShapes /> : <HeroScene animate={mode === "live"} visible={visible} />}
     </div>
   );
 }

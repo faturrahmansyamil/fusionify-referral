@@ -5,7 +5,9 @@ insert into referral.products (id, name, description, price, commission_type, co
  ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e01', '[DEMO] Premium Streaming 1 Bulan', 'Akun sharing, garansi 30 hari.', 25000, 'percent', 10, 1),
  ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e02', '[DEMO] Fusionify Bot — Paket Starter', 'Bot auto-reply WA/Telegram, 1 bulan.', 150000, 'percent', 15, 2),
  ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e03', '[DEMO] Top Up Saldo FTV Pay 100rb', 'Komisi flat per transaksi.', 101500, 'flat', 1000, 3),
- ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e04', '[DEMO] Jasa Landing Page UMKM', 'Desain + deploy 1 halaman.', 750000, 'percent', 8, 4)
+ ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e04', '[DEMO] Jasa Landing Page UMKM', 'Desain + deploy 1 halaman.', 750000, 'percent', 8, 4),
+ ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e05', '[DEMO] Canva Pro 1 Tahun', 'Undangan tim edukasi, garansi penuh.', 45000, 'percent', 12, 5),
+ ('5d1f0c2e-7a3b-4c4d-9e5f-6a7b8c9d0e06', '[DEMO] Desain Feed Instagram 9 Post', 'Template feed + caption, revisi 2x.', 200000, 'percent', 10, 6)
 on conflict (id) do nothing;
 
 insert into referral.campaigns (id, name, slug, utm_source, utm_medium, utm_campaign) values

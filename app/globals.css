@@ -56,7 +56,9 @@ h1, h2, h3, .serif {
   font-weight: 400 !important;
   letter-spacing: -0.02em;
   line-height: 1.2;
+  text-wrap: balance;
 }
+p { text-wrap: pretty; }
 ::selection { background: var(--color-periwinkle-mist); }
 
 @utility card { @apply rounded-[24px] border border-ash bg-parchment sm:rounded-[40px]; }
@@ -78,3 +80,5 @@ h1, h2, h3, .serif {
 }
 
 @keyframes fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+:focus-visible { outline: 2px solid var(--color-off-black); outline-offset: 3px; }

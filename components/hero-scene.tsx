@@ -21,7 +21,7 @@ function Shape({ kind, color, pos, scale, i }: (typeof SHAPES)[number] & { i: nu
         {kind === "sphere" && <sphereGeometry args={[0.7, 48, 32]} />}
         {kind === "box" && <boxGeometry args={[1, 1, 1]} />}
         {kind === "cone" && <coneGeometry args={[0.7, 1.3, 48]} />}
-        <meshPhysicalMaterial color={color} transparent opacity={0.72} roughness={0.25} transmission={0.35} thickness={0.6} clearcoat={1} depthWrite={false} />
+        <meshPhysicalMaterial color={color} transparent opacity={0.78} roughness={0.3} clearcoat={1} clearcoatRoughness={0.2} depthWrite={false} />
       </mesh>
     </Float>
   );
@@ -45,13 +45,13 @@ function Rig({ animate }: { animate: boolean }) {
   );
 }
 
-export default function HeroScene({ animate = true }: { animate?: boolean }) {
+export default function HeroScene({ animate = true, visible = true }: { animate?: boolean; visible?: boolean }) {
   return (
     <Canvas
-      dpr={[1, 1.75]}
+      dpr={[1, 1.5]}
       camera={{ position: [0, 0, 5.2], fov: 45 }}
       gl={{ antialias: true, alpha: true, powerPreference: "low-power" }}
-      frameloop={animate ? "always" : "demand"}
+      frameloop={animate && visible ? "always" : "demand"}
       aria-hidden
     >
       <ambientLight intensity={1.4} />
