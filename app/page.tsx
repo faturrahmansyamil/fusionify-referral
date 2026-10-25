@@ -105,7 +105,7 @@ export default function Home() {
               <Link href="/daftar" data-magnetic="" className="btn-ghost-light w-full sm:w-auto">Mau jadi reseller? Daftar</Link>
             </div>
           </div>
-          <div className="relative h-[360px] sm:h-[480px] lg:h-[640px]">
+          <div className="relative h-[360px] sm:h-[480px] lg:-ml-40 lg:h-[640px]">
             <Hero3D />
           </div>
         </div>
